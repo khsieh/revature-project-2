@@ -1,9 +1,13 @@
 package com.revature.warlockzone.beans;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +25,9 @@ public class User {
 	@Column(unique = true)
 	private String email;
 	private byte[] profilePicture;
+	
+	@OneToMany(mappedBy = "user")
+	private List<Post> posts = new ArrayList<Post>();
 	
 	public int getUserID() {
 		return userID;
@@ -63,6 +70,12 @@ public class User {
 	}
 	public void setProfilePicture(byte[] profilePicture) {
 		this.profilePicture = profilePicture;
+	}
+	public List<Post> getPosts() {
+		return posts;
+	}
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
 	}
 	
 	

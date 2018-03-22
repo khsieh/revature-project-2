@@ -19,9 +19,21 @@ public class UserService {
 		return userDao.findAll();	
 	}
 	
+	public User getUserByUsername(String username){
+		//probably need to change this
+		return userDao.findByUsername(username);
+	}
+	
 	public void addUser(User user) {
-		System.out.println(user.getFirstName() + " " + user.getLastName());
 		userDao.save(user);
+	}
+	
+	public void updateUser(User user) {
+		userDao.save(user);
+	}
+	
+	public void deleteUserById(int id) {
+		userDao.deleteById(id);
 	}
 	
 }

@@ -3,6 +3,8 @@ package com.revature.warlockzone.beans;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,6 +16,10 @@ public class Post {
 	private int postId;
 	private String message;
 	private byte[] image;
+	
+	@ManyToOne
+	@JoinColumn(name = "USERID")
+	private User user;
 	
 	public int getPostId() {
 		return postId;
