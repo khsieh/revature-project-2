@@ -24,8 +24,13 @@ public class UserController {
 	}
 	
 	@RequestMapping("/user")
-	public List<User> getUser() {
+	public List<User> getUsers() {
 		return userService.getAllUsers();
+	}
+	
+	@RequestMapping("/user/{id}")
+	public User getUser(@PathVariable int id) {
+		return userService.getUser(id);
 	}
 	
 	@RequestMapping("/user/{username}")
