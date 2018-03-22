@@ -30,7 +30,7 @@ public class PostController {
 	}
 	
 	@RequestMapping("/post/{id}")
-	public Post getPosts(@PathVariable int id){
+	public Post getPost(@PathVariable int id){
 		return postService.getPostById(id);
 	}
 	
