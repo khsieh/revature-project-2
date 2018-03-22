@@ -1,7 +1,8 @@
-package com.revature.dao;
+package com.revature.warlockzone.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.revature.beans.User;
+
+import com.revature.warlockzone.beans.User;
 
 public interface UserDAO extends JpaRepository<User, Integer>{
 	

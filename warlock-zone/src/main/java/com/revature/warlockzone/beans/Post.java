@@ -1,4 +1,4 @@
-package com.revature.beans;
+package com.revature.warlockzone.beans;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

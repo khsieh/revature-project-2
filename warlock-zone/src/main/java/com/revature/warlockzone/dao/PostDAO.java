@@ -1,7 +1,8 @@
-package com.revature.dao;
+package com.revature.warlockzone.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.revature.beans.Post;
+
+import com.revature.warlockzone.beans.Post;
 
 public interface PostDAO extends JpaRepository<Post, Integer>{
 	
