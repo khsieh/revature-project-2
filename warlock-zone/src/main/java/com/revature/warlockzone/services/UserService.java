@@ -1,6 +1,7 @@
 package com.revature.warlockzone.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,11 @@ public class UserService {
 	public List<User> getAllUsers(){
 		//probably need to change this
 		return userDao.findAll();	
+	}
+	
+	public User getUser(int id) {
+		Optional search = userDAO.findById(id);
+		return (search.isPresent()) ? (User) search.get() : null;
 	}
 	
 	public User getUserByUsername(String username){
