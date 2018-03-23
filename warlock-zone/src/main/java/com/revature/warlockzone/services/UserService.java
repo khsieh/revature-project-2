@@ -21,7 +21,7 @@ public class UserService {
 	}
 	
 	public User getUser(int id) {
-		Optional search = userDAO.findById(id);
+		Optional search = userDao.findById(id);
 		return (search.isPresent()) ? (User) search.get() : null;
 	}
 	
