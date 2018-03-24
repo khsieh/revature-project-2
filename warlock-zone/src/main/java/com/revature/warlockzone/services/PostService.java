@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.warlockzone.beans.Post;
+import com.revature.warlockzone.beans.User;
 import com.revature.warlockzone.dao.PostDAO;
 
 @Service
@@ -13,6 +14,7 @@ public class PostService {
 
 	@Autowired
 	private PostDAO postDao;
+	
 	
 	public List<Post> getAllPosts(){
 		return postDao.findAll();
@@ -33,5 +35,14 @@ public class PostService {
 	public void deletePost(int id) {
 		postDao.deleteById(id);
 	}
+	
+	public List<Post> getLastTenPosts(){
+		return postDao.findFirst10ByOrderByPostIdDesc();
+	}
+	
+	public List<Post> getNextTenPosts(int id){
+		return postDao.findFirst10ByPostIdLessThanOrderByPostIdDesc(id);
+	}
+	
 	
 }

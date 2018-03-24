@@ -29,9 +29,20 @@ public class PostController {
 		return postService.getAllPosts();
 	}
 	
+	
 	@RequestMapping("/post/{id}")
 	public Post getPost(@PathVariable int id){
 		return postService.getPostById(id);
+	}
+	
+	@RequestMapping("/RecentPosts")
+	public List<Post> getRecentPosts(){
+		return postService.getLastTenPosts();
+	}
+	
+	@RequestMapping("/RecentPosts/{id}")
+	public List<Post> getRecentPosts(@PathVariable int id){
+		return postService.getNextTenPosts(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT, value = "/post")
