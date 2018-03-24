@@ -16,7 +16,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	  @Autowired
 	    private UserDetailsService userDetailsService;
 	  
-	//enable security, every page requires login and redirects to login page is user hasn't login
+	/*//enable security, every page requires login and redirects to login page is user hasn't login
 	   @Override
 	    protected void configure(HttpSecurity http) throws Exception {
 	        http
@@ -40,23 +40,23 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	   @Autowired
 	    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 	        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
-	    }
+	 */   }
 	   
-	   // disable security
-//	@Override
-//	protected void configure(HttpSecurity httpSecurity) {
-//		try {
-//			//authorize and permit every HTTPRequest
-//			httpSecurity
-//				.authorizeRequests()
-//				.anyRequest()
-//				.permitAll();
-//			
-//			httpSecurity.csrf().disable();
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
+	   //disable security
+	@Override
+	protected void configure(HttpSecurity httpSecurity) {
+		try {
+			//authorize and permit every HTTPRequest
+			httpSecurity
+				.authorizeRequests()
+				.anyRequest()
+				.permitAll();
+			
+			httpSecurity.csrf().disable();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 }
