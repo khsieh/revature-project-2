@@ -25,7 +25,7 @@ public class LoginController {
 	@RequestMapping(method = RequestMethod.POST, value = "/login")
 	public ResponseEntity<User> login(@RequestBody User user){
 	    user = loginService.authenticate(user.getUsername(), user.getPassword());
-	    return (user==null) ? ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null) : ResponseEntity.ok(user);
+	    return (user==null) ? ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null) : ResponseEntity.status(HttpStatus.ACCEPTED).body(user);
 	}
 	
 }
