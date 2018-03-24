@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.warlockzone.beans.User;
 import com.revature.warlockzone.services.LoginService;
+import com.revature.warlockzone.services.SecurityService;
 
 @RestController
 public class LoginController {
@@ -18,7 +19,8 @@ public class LoginController {
 	LoginService loginService;
 	@Autowired
 	User user;
-	
+	// @Autowired
+   // SecurityService securityService;
 	//Response entity takes care of returning status
 	@RequestMapping(method = RequestMethod.POST, value = "/login")
 	public ResponseEntity<User> login(@RequestBody User user){
