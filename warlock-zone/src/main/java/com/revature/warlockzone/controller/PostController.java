@@ -3,6 +3,7 @@ package com.revature.warlockzone.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,8 @@ import com.revature.warlockzone.dao.PostDAO;
 import com.revature.warlockzone.services.PostService;
 
 @RestController
+//allows communication from other ip's
+@CrossOrigin
 public class PostController {
 
 	@Autowired
