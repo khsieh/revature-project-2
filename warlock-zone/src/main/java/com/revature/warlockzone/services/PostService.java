@@ -14,14 +14,18 @@ public class PostService {
 
 	@Autowired
 	private PostDAO postDao;
+	@Autowired
+	private Post post;
 	
 	
 	public List<Post> getAllPosts(){
-		return postDao.findAll();
+		return securePosts(postDao.findAll());
 	}
 	
 	public Post getPostById(int id) {
-		return postDao.findBypostId(id);
+		post = postDao.findBypostId(id);
+		post.getUser().setPassword("null");
+		return post;
 	}
 	
 	public void addPost(Post post) {
@@ -37,12 +41,19 @@ public class PostService {
 	}
 	
 	public List<Post> getLastTenPosts(){
-		return postDao.findFirst10ByOrderByPostIdDesc();
+		return securePosts(postDao.findFirst10ByOrderByPostIdDesc());
 	}
 	
 	public List<Post> getNextTenPosts(int id){
-		return postDao.findFirst10ByPostIdLessThanOrderByPostIdDesc(id);
+		return securePosts(postDao.findFirst10ByPostIdLessThanOrderByPostIdDesc(id));
 	}
 	
-	
+	private List<Post> securePosts(List<Post> posts) {
+		
+		for(int i = 0; i < posts.size(); i++) {
+			posts.get(i).getUser().setPassword("null");
+		}
+		
+		return posts;
+	}
 }
