@@ -5,6 +5,7 @@
 	<groupId>com.revature</groupId>
 	<artifactId>warlock-zone-angular</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
 <build>
     <finalName>warlock-zone-angular</finalName>
     <plugins>
