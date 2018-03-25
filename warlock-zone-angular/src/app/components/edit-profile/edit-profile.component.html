@@ -1,0 +1,47 @@
+<div class="modal-header">
+    <h4 class="modal-title">Editing {{this.editUser.username}}'s Profile</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="jumbotron rounded p-3">
+        <form>
+            <!-- firstname -->
+            <div class="form-group">
+                <label class="font-weight-bold" for="this.editUser.firstname">First Name</label>
+                <input [(ngModel)]="this.editUser.firstName" name="this.editUser.firstname" type="text" class="form-control" id="fname_edit" placeholder="First Name">
+            </div>
+            <!-- lastname -->
+            <div class="form-group">
+                <label class="font-weight-bold" for="lname_edit">First Name</label>
+                <input [(ngModel)]="this.editUser.lastName" name="lname_edit" type="text" class="form-control" id="lname_edit" placeholder="Last Name">
+            </div>
+            <!-- email -->
+            <div class="form-group">
+                <label class="font-weight-bold" for="email_edit">email</label>
+                <input [(ngModel)]="this.editUser.email" name="email_edit" type="text" class="form-control" id="email_edit" placeholder="spell@warlockzone.com">
+            </div>
+            <!-- current password -->
+            <div class="form-group">
+                <label class="font-weight-bold" for="current_password">Current Password</label>
+                <input [(ngModel)]="this.editUser.password" required name="current_password" type="password" class="form-control" id="current_password" placeholder="hellothisispassword">
+            </div>    
+            <!-- new password -->
+            <div class="form-group">
+                <label class="font-weight-bold" for="new_password1">New Password</label>
+                <input [(ngModel)]="new_password1" required name="new_password1" type="password" class="form-control" id="new_password1" placeholder="New Password">
+            </div>
+            <!-- confirm new pw -->
+            <div class="form-group">
+                <label class="font-weight-bold" for="new_password2">Confirm New Password</label>
+                <input [(ngModel)]="new_password2" required name="new_password2" type="password" class="form-control" id="new_password2" placeholder="Confirm new Passowrd">
+            </div>
+            
+        </form>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')" (click)="updateUser()"> Update </button>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Cancel</button>
+</div>

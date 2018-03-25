@@ -1,0 +1,11 @@
+#submitComment {
+    text-align: "right";
+}
+
+.row.no-gutters.jumbotron {
+    padding-top: 2rem;
+    padding-bottom: 1.5 rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    
+}

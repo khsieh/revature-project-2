@@ -1,0 +1,48 @@
+<div class="modal-header">
+    <!-- <h4 class="modal-title">Registering New User</h4> -->
+    <h4 class="modal-title">Welcome, New Warlock</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="jumbotron rounded p-3">
+        <form>
+            <!-- first name -->
+            <div class="form-group">
+                <label class="font-weight-bold" for="new_first_name"> First Name</label>
+                <input [(ngModel)]="new_first_name" required name="new_first_name" type="text" class="form-control" id="new_first_name" placeholder="First">
+            </div>
+            <!-- last name -->
+            <div class="form-group">
+                <label class="font-weight-bold" for="new_last_name"> Last Name </label>
+                <input [(ngModel)]="new_last_name" required name="new_last_name" type="text" class="form-control" id="new_last_name" placeholder="Last">
+            </div>
+            <!-- email -->
+            <div class="form-group">
+                <label class="font-weight-bold" for="new_email"> Email </label>
+                <input [(ngModel)]="new_email" required name="new_email" type="text" class="form-control" id="new_email" placeholder="Email">
+            </div>
+            <!-- username -->
+            <div class="form-group">
+                <label class="font-weight-bold" for="new_username"> Username </label>
+                <input [(ngModel)]="new_username" required name="new_username" type="text" class="form-control" id="new_username" placeholder="username">
+            </div>
+            <!-- new pw -->
+            <div class="form-group">
+                <label class="font-weight-bold" for="new_password1"> New Password </label>
+                <input [(ngModel)]="new_password1" required name="new_password1" type="password" class="form-control" id="new_password1" placeholder="Passowrd">
+            </div>
+            <!-- confirm new pw -->
+            <div class="form-group">
+                <label class="font-weight-bold" for="new_password2">Confirm New Password</label>
+                <input [(ngModel)]="new_password2" required name="new_password2" type="password" class="form-control" id="new_password2" placeholder="Confirm new Passowrd">
+            </div>
+            
+        </form>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')" (click)="submit()"> Submit </button><br>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')"> Cancel </button>
+</div>

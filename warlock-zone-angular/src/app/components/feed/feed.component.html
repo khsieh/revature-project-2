@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="row">
+      
+    <!-- remove this -->
+      <!--<div id="profile" name="profile" class="col-md-3" style ='background-color: #2ba6cb;'><p align="center">Oh you know</p></div>-->
+          <!-- remove this -->
+
+      
+      <div class="col-md-9">
+        <div class="row jumbotron">
+        <div class="col-sm-9">
+        <h3 align="center">The Warlock's Message Board</h3>
+        </div><!-- /col-sm-12 -->
+        <!-- <div class="col-sm-3">
+          <div *ngIf="showCommentEntry; else createPostBlock">
+              <button class="btn" (click)="unhidePost()">Cancel</button>
+          </div>
+          <ng-template #createPostBlock>
+              <button class="btn" (click)="unhidePost()">Create Post</button>
+          </ng-template>
+        </div> -->
+        </div><!-- /row -->
+
+        
+
+        <!-- Start of comment block -->
+        <ol style="padding:0px">
+
+          <!-- Hidden empty comment block with input fields for creating posts -->
+        
+          <div class="row no-gutters jumbotron" [ngStyle]="{'display': showCommentEntry ? 'block':'none'}"> 
+            <div class="col-sm-1">
+              <div class="glyphicon glyphicon-x">
+                <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+              </div><!-- /thumbnail -->
+            </div><!-- /col-sm-1 -->
+                
+            <div class="col-md-11">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <strong> *Cousin Seth* </strong>
+                  <span class="text-muted">commented 5 days ago</span>
+                  <button class="btn" id="submitComment" type="button" (click)="createPost()">Submit</button>
+                </div>
+                <div class="panel-body" style="padding: 0px">  
+                    <textarea class="form-control" [(ngModel)]="unsubmittedContent" rows="5" ng-model="cmtName" style="padding: 0px; border: none" placeholder="Create your message"></textarea>       
+                </div>
+              </div><!-- /panel panel-default -->
+            </div><!-- /col-sm-5 -->
+          </div>
+
+          <li *ngFor="let post of postList" style="list-style-type: none">
+            <div class="row no-gutters jumbotron">
+              <div class="col-sm-1">
+                <div class="glyphicon glyphicon-x">
+                  <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+                  </div><!-- /thumbnail -->
+                  </div><!-- /col-sm-1 -->
+                  
+                  <div class="col-md-11">
+                  <div class="panel panel-default">
+                  <div class="panel-heading">
+                  <strong>{{post.$author.$username}}</strong> <span class="text-muted">commented 5 days ago</span>
+                  </div>
+                  <div class="panel-body"> {{post.$content}} </div><!-- /panel-body -->
+                </div><!-- /panel panel-default -->
+              </div><!-- /col-sm-5 -->
+            </div>
+          </li>
+        </ol>
+        
+        <!-- End of comment block -->
+
+      </div>
+  </div>
+</div> <!--/container -->

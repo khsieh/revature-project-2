@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+        <div class="align-middle">
+            <br><br> 
+            <form class="login-form-group rounded p-3">
+                <div class="form-group">
+                    <label class="font-weight-bold" for="username">Username</label>
+                    <input [(ngModel)]="login_username" name="login_username" type="text" class="form-control" id="username" placeholder="username">
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-bold" for="password">Password</label>
+                    <input [(ngModel)]="login_password" name="login_password" type="password" class="form-control" id="password" placeholder="password">
+                </div>
+                <div class="text-center">
+                    <button id="login" (click)="validate()" type="submit" class="btn btn-primary glyphicon glyphicon-log-in"> Login </button>
+                    <button id="register" (click)="register()" type="button" class="btn btn-primary glyphicon glyphicon-user"> Register </button>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+</div>
