@@ -15,9 +15,7 @@ public class LoginService {
 	UserService userService;
 	@Autowired
 	User user;
-  
-
-	
+  	
 	public User authenticate(String username, String password) {
 		
 		user = userService.getUserByUsername(username);
