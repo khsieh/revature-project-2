@@ -1,5 +1,7 @@
 package com.revature.warlockzone.controller;
 
+import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,12 @@ public class PostController {
 	@RequestMapping(method = RequestMethod.POST, value = "/post")
 	public void addPost(@RequestBody Post post) {
 		postService.addPost(post);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/post/RecentPosts")
+	public List<Post> addAndRetrieve(@RequestBody Post post) {
+		postService.addPost(post);
+		return postService.getLastTenPosts();
 	}
 	
 	@RequestMapping("/post")
@@ -57,4 +65,5 @@ public class PostController {
 	public void deletePost(@PathVariable int id) {
 		postService.deletePost(id);
 	}
+	
 }

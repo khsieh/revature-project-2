@@ -41,7 +41,7 @@ public class PostService {
 	}
 	
 	public List<Post> getLastTenPosts(){
-		return securePosts(postDao.findFirst10ByOrderByPostIdDesc());
+		return postDao.findFirst10ByOrderByPostIdDesc();
 	}
 	
 	public List<Post> getNextTenPosts(int id){
