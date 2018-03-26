@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
         this.loginService.validate(this.login_username,this.login_password).subscribe(
             resp=>{
                 let respJSON = JSON.parse(resp.body);
+                
                 console.log(resp.status);
             },
             err=>{

@@ -55,11 +55,11 @@ export class User {
 		this.password = value;
 	}
 
-    public get $profilePicure(){
+    public get $profilePicture(){
         return this.profilePicture
     }
     
-    public set $profilePciture(value: Blob){
+    public set $profilePicture(value: Blob){
         this.profilePicture = value;
     }
 

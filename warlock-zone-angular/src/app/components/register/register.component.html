@@ -12,33 +12,44 @@
             <div class="form-group">
                 <label class="font-weight-bold" for="new_first_name"> First Name</label>
                 <input [(ngModel)]="new_first_name" required name="new_first_name" type="text" class="form-control" id="new_first_name" placeholder="First">
+                <!-- <input [(ngModel)]="newUser.$firstName" required name="new_first_name" type="text" class="form-control" id="new_first_name" placeholder="First"> -->
             </div>
             <!-- last name -->
             <div class="form-group">
                 <label class="font-weight-bold" for="new_last_name"> Last Name </label>
                 <input [(ngModel)]="new_last_name" required name="new_last_name" type="text" class="form-control" id="new_last_name" placeholder="Last">
+                <!-- <input [(ngModel)]="newUser.$lastName" required name="new_last_name" type="text" class="form-control" id="new_last_name" placeholder="Last"> -->
             </div>
             <!-- email -->
             <div class="form-group">
                 <label class="font-weight-bold" for="new_email"> Email </label>
                 <input [(ngModel)]="new_email" required name="new_email" type="text" class="form-control" id="new_email" placeholder="Email">
+                <!-- <input [(ngModel)]="newUser.$email" required name="new_email" type="text" class="form-control" id="new_email" placeholder="Email"> -->
             </div>
             <!-- username -->
             <div class="form-group">
                 <label class="font-weight-bold" for="new_username"> Username </label>
                 <input [(ngModel)]="new_username" required name="new_username" type="text" class="form-control" id="new_username" placeholder="username">
+                <!-- <input [(ngModel)]="newUser.$username" required name="new_username" type="text" class="form-control" id="new_username" placeholder="username"> -->
             </div>
             <!-- new pw -->
             <div class="form-group">
                 <label class="font-weight-bold" for="new_password1"> New Password </label>
                 <input [(ngModel)]="new_password1" required name="new_password1" type="password" class="form-control" id="new_password1" placeholder="Passowrd">
+                <!-- <input [(ngModel)]="newUser.$password" required name="new_password1" type="password" class="form-control" id="new_password1" placeholder="Passowrd"> -->
             </div>
             <!-- confirm new pw -->
             <div class="form-group">
                 <label class="font-weight-bold" for="new_password2">Confirm New Password</label>
                 <input [(ngModel)]="new_password2" required name="new_password2" type="password" class="form-control" id="new_password2" placeholder="Confirm new Passowrd">
             </div>
-            
+
+            <!-- Profile pic -->
+            <div class="form-group">
+                <label class="font-weight-bold" for="new_ProfilePicture">Confirm New Password</label>
+                <input [(ngModel)]="new_ProfilePicture" required name="new_ProfilePicture" type="file" accept="image/*" class="form-control" id="new_ProfilePicture">
+                <!-- <input [(ngModel)]="newUser.$profilePicture" required name="new_ProfilePicture" type="file" accept="image/*" class="form-control" id="new_ProfilePicture"> -->
+            </div>
         </form>
     </div>
 </div>
