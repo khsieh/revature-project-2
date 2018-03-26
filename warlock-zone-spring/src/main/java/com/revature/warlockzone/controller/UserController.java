@@ -30,10 +30,10 @@ public class UserController {
 		return userService.getAllUsers();
 	}
 	
-	@RequestMapping("/user/{id}")
-	public User getUser(@PathVariable int id) {
-		return userService.getUser(id);
-	}
+//	@RequestMapping("/user/{id}")
+//	public User getUser(@PathVariable int id) {
+//		return userService.getUser(id);
+//	}
 	
 	@RequestMapping("/user/{username}")
 	public User getUserByUsername(@PathVariable String username) {

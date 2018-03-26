@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.revature.warlockzone.beans.Post;
 import com.revature.warlockzone.beans.User;
 import com.revature.warlockzone.dao.UserDAO;
 
@@ -14,10 +15,12 @@ public class UserService {
 
 	@Autowired
 	UserDAO userDao;
+	@Autowired
+	User user;
 	
 	public List<User> getAllUsers(){
 		//probably need to change this
-		return userDao.findAll();	
+		return secureUsers(userDao.findAll());	
 	}
 	
 	public User getUser(int id) {
@@ -27,7 +30,9 @@ public class UserService {
 	
 	public User getUserByUsername(String username){
 		//probably need to change this
-		return userDao.findByUsername(username);
+		user = userDao.findByUsername(username);
+		user.setPassword("null");
+		return user;
 	}
 	
 	public void addUser(User user) {
@@ -40,6 +45,15 @@ public class UserService {
 	
 	public void deleteUserById(int id) {
 		userDao.deleteById(id);
+	}
+	
+	private List<User> secureUsers(List<User> users) {
+		
+		for(int i = 0; i < users.size(); i++) {
+			users.get(i).setPassword("null");
+		}
+		
+		return users;
 	}
 	
 }
