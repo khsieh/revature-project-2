@@ -12,7 +12,7 @@
     <description>Spring and Angular</description>
 
     <modules>
-        <!--<module>warlock-zone-angular</module>-->
+        <module>warlock-zone-angular</module>
         <module>warlock-zone-spring</module>
     </modules>
 </project>
