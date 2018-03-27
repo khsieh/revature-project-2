@@ -71,6 +71,11 @@ public class Post {
 	public void setTimeStamp(Date timeStamp) {
 		this.timeStamp = timeStamp;
 	}
+	@Override
+	public String toString() {
+		return "Post [postId=" + postId + ", message=" + message + ", timeStamp=" + timeStamp + ", likes=" + likes
+				+ ", user=" + user + "]";
+	}
 	
 	
 }

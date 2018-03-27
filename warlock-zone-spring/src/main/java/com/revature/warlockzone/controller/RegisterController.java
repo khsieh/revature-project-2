@@ -3,6 +3,7 @@ package com.revature.warlockzone.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,18 +18,18 @@ import com.revature.warlockzone.services.UserService;
 @RestController
 @CrossOrigin
 public class RegisterController {
-	
+	private static Logger log = Logger.getLogger(RegisterController.class.getName());
 	@Autowired
 	UserService userService;
 	//get user information in form and save in database
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	  public ModelAndView addUser(HttpServletRequest request, HttpServletResponse response,
+	public ModelAndView addUser(HttpServletRequest request, HttpServletResponse response,
 			  @ModelAttribute("user") User user) {
+		log.info("addUser: " + user.toString());
+		userService.addUser(user); //add user to database
 
-	  userService.addUser(user); //add user to database
+		return new ModelAndView("welcome", "firstname", user.getFirstName());//returns next view + possilbe url
 
-	  return new ModelAndView("welcome", "firstname", user.getFirstName());//returns next view + possilbe url
-
-	  }
+	}
 
 }
