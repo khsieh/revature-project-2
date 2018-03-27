@@ -25,6 +25,7 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { PostsService } from './services/posts/posts.service';
 import { ToggleNewPostService } from './services/util/toggle-new-post.service';
+import { CurUserService } from './services/cache/curUser/cur-user.service';
 
 
 
@@ -58,7 +59,8 @@ import { ToggleNewPostService } from './services/util/toggle-new-post.service';
   providers: [
     LoginService,
     PostsService,
-    ToggleNewPostService
+    ToggleNewPostService,
+    CurUserService
   ],
   bootstrap: [AppComponent]
 })
