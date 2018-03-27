@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal,NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { User } from '../../models/user';
+import { RegisterService } from '../../services/register/register.service';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,10 @@ export class RegisterComponent implements OnInit {
     new_password2:string;
     new_ProfilePicture;
 
-    constructor(public activeModal: NgbActiveModal) { }
+    constructor(
+        private regService:RegisterService,
+        public activeModal: NgbActiveModal
+    ) { }
 
     ngOnInit() {
     }
@@ -29,8 +33,19 @@ export class RegisterComponent implements OnInit {
         this.newUser.$lastName = this.new_last_name;
         this.newUser.$email = this.new_email;
         this.newUser.$username = this.new_username;
-        this.newUser.$profilePicture = this.new_ProfilePicture;
+        //TODO:handle pictures with S3?
+        this.newUser.$profilePicture = null;//this.new_ProfilePicture;
+        this.newUser.$password = this.new_password1;
         if(this.newUser.$password === this.new_password2){
+            this.regService.submit(this.newUser).subscribe(
+                resp=>{
+                    //TODO: set status in backend
+                    console.log("register success!");
+                },
+                err=>{
+                    console.log(err);
+                }
+            );
             console.log("matching passwords");
             console.log("go!");
         }

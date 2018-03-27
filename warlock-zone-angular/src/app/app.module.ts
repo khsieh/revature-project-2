@@ -26,6 +26,7 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 import { PostsService } from './services/posts/posts.service';
 import { ToggleNewPostService } from './services/util/toggle-new-post.service';
 import { CurUserService } from './services/cache/curUser/cur-user.service';
+import { RegisterService } from './services/register/register.service';
 
 
 
@@ -60,7 +61,8 @@ import { CurUserService } from './services/cache/curUser/cur-user.service';
     LoginService,
     PostsService,
     ToggleNewPostService,
-    CurUserService
+    CurUserService,
+    RegisterService
   ],
   bootstrap: [AppComponent]
 })
