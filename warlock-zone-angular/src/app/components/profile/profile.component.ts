@@ -15,7 +15,7 @@ import { User } from '../../models/user';
 export class ProfileComponent implements OnInit {
 
     private viewPost = false;
-    private currentUser:User = new User();
+    currentUser:User = new User();
     constructor(
         private router:Router, 
         private editModal:NgbModal,
