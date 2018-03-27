@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -30,8 +31,8 @@ public class User {
 	private String email;
 	private byte[] profilePicture;
 	
-//	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-//	private List<Post> posts = new ArrayList<Post>();
+	@ManyToMany
+	private List<Post> posts = new ArrayList<Post>();
 	
 	public int getUserID() {
 		return userID;
@@ -75,13 +76,8 @@ public class User {
 	public void setProfilePicture(byte[] profilePicture) {
 		this.profilePicture = profilePicture;
 	}
-//	public List<Post> getPosts() {
-//		return posts;
-//	}
-//	public void setPosts(List<Post> posts) {
-//		this.posts = posts;
-//	}
-	
-	
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
 	
 }
