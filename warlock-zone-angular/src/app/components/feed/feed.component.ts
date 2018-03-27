@@ -56,17 +56,17 @@ export class FeedComponent implements OnInit {
       let newPost = new Post();
       let user1 = new User();
       user1.$userID = 1;
-      newPost.$user = user1;
+      newPost.$user = user1; //TODO:change this
       // newPost.$author = this.curUser; //gets currentUser from CurUserService
       newPost.$message = this.unsubmittedContent;
       newPost.$likes = 0;
       newPost.$image = null; //get postID from DB
+
       if(this.unsubmittedContent == ""){
         alert("Please enter a message before submitting.")
         return;
       }
-      // this.postList.pop(); //removes last post (oldest post) from list
-      // this.postList.unshift(newPost); //append to front of list
+ 
       this.unsubmittedContent = ""; //reset unsubmttedConent to nothing
       // this.showCommentEntry = false;
       //call addPost method, doPost sends request and returns resposne of 10 posts
@@ -86,8 +86,22 @@ export class FeedComponent implements OnInit {
 
       obs.subscribe(
         resp=>{
-          let list = JSON.parse(resp.body);
-          // console.log(list[0].user.username);
+          console.log(resp);
+          let list;
+          try{
+            list = JSON.parse(resp.body);
+          } catch (e){
+            //try catch to test if resp is a JSON or not
+            //will throw error when getting back a JSON from addPost
+            //catches it and sets list equal to list of JSON
+            list = resp;
+          }
+          if(list == null){
+            console.log("Error: Feed Componenet: populatePostList response body error");
+          }
+
+          this.postList = [];
+
           for (var index = 0; index<list.length;index++){
             console.log(list[index]);
             let newPost = new Post();

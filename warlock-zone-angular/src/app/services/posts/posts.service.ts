@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map'
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Post } from '../../models/post';
 
 @Injectable()
@@ -29,12 +29,29 @@ export class PostsService {
   }
 
   addPost(post: Post){
-    let url = 'http://13.58.228.189/post/RecentPosts';
+    let url = 'http://ec2-13-58-228-189.us-east-2.compute.amazonaws.com/post/RecentPosts';
     console.log("Post JSON.stringify(): "+JSON.stringify(post.getJSON()));
     // let resp = this.httpClient.post(url,post.getJSON());
-    let resp = this.httpClient.post(url,post.getJSON());
 
-    console.log('resp: '+resp);
+    const requestBody = {
+      "message":post.$message,
+      "likes":post.$likes,
+      "image":post.$image,
+      "user":post.$user,
+      // "email":newUser.$email,
+      // "profilePicture":newUser.$profilePicture
+  }
+    const header = {
+        headers:new HttpHeaders({
+            ContentType:'application/json',
+            responseType:'text',
+            observe:'response'
+        })
+    }
+    console.log(requestBody);
+    let resp = this.httpClient.post(url,requestBody,header);
+
+    console.log('resp: '+JSON.stringify(resp));
     return resp;
   }
 
