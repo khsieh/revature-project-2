@@ -26,7 +26,7 @@ public class PasswordController {
 
   
 	
-    @GetMapping
+    @GetMapping("/forgot-password")
     public String displayResetPasswordPage(@RequestParam(required = false) String token,
                                            Model model) {
 
