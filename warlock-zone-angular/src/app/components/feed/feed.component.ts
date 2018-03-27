@@ -86,7 +86,7 @@ export class FeedComponent implements OnInit {
 
       obs.subscribe(
         resp=>{
-          console.log(resp);
+          // console.log(resp);
           let list;
           try{
             list = JSON.parse(resp.body);
