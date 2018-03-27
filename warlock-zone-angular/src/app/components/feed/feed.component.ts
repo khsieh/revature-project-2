@@ -38,7 +38,7 @@ export class FeedComponent implements OnInit {
     this.toggleService.curStateAsObserable.subscribe(
         resp=>{
             this.showCommentEntry = resp;
-            console.log(resp);
+            // console.log(resp);
         },
         err=>{
             console.log(err);
