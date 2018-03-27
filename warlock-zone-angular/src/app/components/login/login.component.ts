@@ -5,6 +5,8 @@ import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 import { LoginService } from '../../services/login/login.service';
 import { RegisterComponent } from '../register/register.component';
+import { CurUserService } from '../../services/cache/curUser/cur-user.service';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +20,7 @@ export class LoginComponent implements OnInit {
 
     constructor(
         private loginService:LoginService,
+        private currentUser:CurUserService,
         private router:Router,
         private regModal:NgbModal
     ) { }
@@ -31,9 +34,26 @@ export class LoginComponent implements OnInit {
         this.loginService.validate(this.login_username,this.login_password).subscribe(
             resp=>{
                 let respJSON = JSON.parse(resp.body);
-                console.log(resp.status);
+                if(resp.status == 202){
+                    // console.log(respJSON["firstName"]);
+                    //user successfully logged in
+                    //storing data in cache obserable
+                    let newUser = new User();
+                    newUser.$userID = respJSON["userID"];
+                    newUser.$firstName = respJSON["firstName"];
+                    newUser.$lastName = respJSON["lastName"];
+                    newUser.$email = respJSON["email"];
+                    newUser.$profilePicture = respJSON["profilePicture"];
+                    newUser.$username = respJSON["username"];
+                    newUser.$password = respJSON["password"];
+                    //set obserable currentUsesr
+                    this.currentUser.setUser(newUser);
+                }
+                //redirect them to app-home
+                this.router.navigate(["home"]);
             },
             err=>{
+                //pop alert
                 console.log(err.status);
             }
         );
