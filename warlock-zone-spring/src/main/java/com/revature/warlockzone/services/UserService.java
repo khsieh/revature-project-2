@@ -31,7 +31,6 @@ public class UserService {
 	public User getUserByUsername(String username){
 		//probably need to change this
 		user = userDao.findByUsername(username);
-		user.setPassword("null");
 		return user;
 	}
 	
