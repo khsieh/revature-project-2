@@ -1,5 +1,6 @@
 package com.revature.warlockzone.controller;
 
+
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.warlockzone.beans.Post;
-import com.revature.warlockzone.dao.PostDAO;
 import com.revature.warlockzone.services.PostService;
 
 @RestController
