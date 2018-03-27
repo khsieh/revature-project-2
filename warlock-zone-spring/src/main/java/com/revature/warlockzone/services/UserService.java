@@ -46,10 +46,6 @@ public class UserService {
 	public void deleteUserById(int id) {
 		userDao.deleteById(id);
 	}
-	public void updatePassword(User user) {
-		userDao.save(user);
-	}
-	
 	
 	private List<User> secureUsers(List<User> users) {
 		
