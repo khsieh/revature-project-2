@@ -1,8 +1,8 @@
-<div class="container">
-  <div class="row">
+<!-- <div class="container">
+  <div class="row"> -->
       
     <!-- remove this -->
-      <!--<div id="profile" name="profile" class="col-md-3" style ='background-color: #2ba6cb;'><p align="center">Oh you know</p></div>-->
+      <!-- <div id="profile" name="profile" class="col-md-3" style ='background-color: #2ba6cb;'><p align="center">Oh you know</p></div> -->
           <!-- remove this -->
 
       
@@ -11,14 +11,14 @@
         <div class="col-sm-9">
         <h3 align="center">The Warlock's Message Board</h3>
         </div><!-- /col-sm-12 -->
-        <!-- <div class="col-sm-3">
+        <div class="col-sm-3">
           <div *ngIf="showCommentEntry; else createPostBlock">
               <button class="btn" (click)="unhidePost()">Cancel</button>
           </div>
           <ng-template #createPostBlock>
               <button class="btn" (click)="unhidePost()">Create Post</button>
           </ng-template>
-        </div> -->
+        </div>
         </div><!-- /row -->
 
         
@@ -48,7 +48,9 @@
               </div><!-- /panel panel-default -->
             </div><!-- /col-sm-5 -->
           </div>
+          <!-- END HIDDEN COMMENT -->
 
+          <!-- LIST OF COMMENTS -->
           <li *ngFor="let post of postList" style="list-style-type: none">
             <div class="row no-gutters jumbotron">
               <div class="col-sm-1">
@@ -60,17 +62,36 @@
                   <div class="col-md-11">
                   <div class="panel panel-default">
                   <div class="panel-heading">
-                  <strong>{{post.$author.$username}}</strong> <span class="text-muted">commented 5 days ago</span>
+                  <strong>{{post.$user.username}}</strong> <span class="text-muted">commented 5 days ago</span>
+                  <button style="float: right" type="button" class="btn btn-default btn-sm" (click)="likePost(post)"><span class="glyphicon glyphicon-thumbs-up"></span> {{post.likes}}</button>
                   </div>
-                  <div class="panel-body"> {{post.$content}} </div><!-- /panel-body -->
+                  <div class="panel-body"> {{post.$message}} </div><!-- /panel-body -->
                 </div><!-- /panel panel-default -->
               </div><!-- /col-sm-5 -->
             </div>
           </li>
         </ol>
-        
+        <!-- END LIST OF COMMENTS -->
         <!-- End of comment block -->
-
+        <div align="center" style="padding-bottom: 25px">
+          <div class="col-md-1">
+            <p>Most Recent</p>
+            <a href="" style="padding-right: 10px"><<</a>
+          </div>
+          <div class="col-md-1">
+              <p>Next 10</p>
+            <a href="" style="padding-right: 10px"><</a>
+          </div>
+          <div class="col-md-1">
+            <p>Previous 10</p>
+            <a href="" style="padding-right: 10px">></a>
+          </div>
+          <div class="col-md-1">
+            <p>Oldest Posts</p>
+            <a href="" style="padding-right: 10px">>></a>
+          </div>
+          
+        </div>
       </div>
-  </div>
-</div> <!--/container -->
+  <!-- </div>
+</div> /container -->

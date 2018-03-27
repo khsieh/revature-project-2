@@ -3,7 +3,7 @@ export class User {
 	userID:number;
     username:string;
     password:string;
-    profilePicture: string; //blob?? S3??
+    profilePicture: Blob; //blob?? S3??
 	firstName:string;
 	lastName:string;
     email:string;
@@ -28,16 +28,6 @@ export class User {
 		this.email = $email;
     }
     */
-    public setAll(newU:User):void{
-        this.$userID = newU.$userID;
-        this.$firstName = newU.$firstName;
-        this.$lastName = newU.$lastName;
-        this.$username = newU.$username;
-        this.$password = newU.$password;
-        this.$profilePicture = newU.$profilePicture;
-        this.$email = newU.$email;
-    }
-
     //userID
 	public get $userID(): number {
 		return this.userID;
@@ -65,11 +55,11 @@ export class User {
 		this.password = value;
 	}
 
-    public get $profilePicture(){
+    public get $profilePicure(){
         return this.profilePicture
     }
     
-    public set $profilePicture(value: string){
+    public set $profilePciture(value: Blob){
         this.profilePicture = value;
     }
 

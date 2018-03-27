@@ -1,12 +1,12 @@
 {
-  "$schema": "node_modules/@angular/cli/lib/config/schema.json",
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
     "name": "warlock-zone"
   },
   "apps": [
     {
       "root": "src",
-      "outDir": "../warlock-zone-spring/src/main/resources/static",
+      "outDir": "../../warlock-zone-spring/src/main/resources/static",
       "assets": [
         "assets",
         "favicon.ico"

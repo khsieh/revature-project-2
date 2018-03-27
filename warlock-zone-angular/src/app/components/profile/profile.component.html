@@ -1,15 +1,16 @@
 <div class="card">
     <canvas class="header-bg" width="250" height="70" id="header-blur">
-        <!-- <img src="http://via.placeholder.com/350x150" alt=""/> -->
+        <!-- {{name}} -->
     </canvas>
-    
     <div class="avatar">
         <img src="http://via.placeholder.com/350x150" alt="" />
     </div>
     <div class="content prof-item">
-        <p>{{currentUser.$firstName}} {{currentUser.$lastName}}</p>
-        <p>username: {{currentUser.$username}}</p>
-        <p>Email: {{currentUser.$email}}</p>
+        <!-- add in binding/retrieve info stuff -->
+        <p>username:</p>
+        <p>Email:</p>
+        <p>Level:</p>
+        <p>Class:   Warlock</p>
         <button id="edit-profile" (click)="editProfile()" type="submit" class="btn btn-primary glyphicon glyphicon-edit"> Edit </button>
         <button id="post-control" (click)="newPostControl()" type="button" class="btn btn-primary"> New Post </button>
         <br><br>

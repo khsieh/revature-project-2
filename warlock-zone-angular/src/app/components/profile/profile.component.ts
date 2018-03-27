@@ -4,8 +4,6 @@ import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 import { ToggleNewPostService } from '../../services/util/toggle-new-post.service';
-import { CurUserService } from '../../services/cache/curUser/cur-user.service';
-import { User } from '../../models/user';
 
 @Component({
   selector: 'app-profile',
@@ -15,25 +13,13 @@ import { User } from '../../models/user';
 export class ProfileComponent implements OnInit {
 
     private viewPost = false;
-    currentUser:User = new User();
     constructor(
         private router:Router, 
-        private editModal:NgbModal,
-        private curUserService:CurUserService, 
+        private editModal:NgbModal, 
         private tService:ToggleNewPostService
     ) { }
 
     ngOnInit() {
-        this.curUserService.getUser().subscribe(
-            resp=>{
-                this.currentUser.setAll(resp);
-                // console.log("Obserable: " + resp.$email);
-                // console.log(this.currentUser.$email);
-            },
-            err=>{
-                console.log(err);
-            }
-        );
     }
 
     editProfile(){
