@@ -151,7 +151,7 @@ export class FeedComponent implements OnInit {
         //if so return and do nothing
       
       post.$likes = post.$likes + 1;
-      
+      //this is a change
     }
 }
 
