@@ -3,6 +3,7 @@ import { NgbModal,NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { User } from '../../models/user';
 import { CurUserService } from '../../services/cache/curUser/cur-user.service';
 import { UpdateUserService } from '../../services/update-user/update-user.service';
+import { ValidateService } from '../../services/validate/validate.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -20,7 +21,8 @@ export class EditProfileComponent implements OnInit {
   constructor(
       public activeModal: NgbActiveModal,
       private curUser:CurUserService,
-      private updateService:UpdateUserService
+      private updateService:UpdateUserService,
+      private validateService:ValidateService
     ){}
 
   ngOnInit() {
@@ -34,6 +36,21 @@ export class EditProfileComponent implements OnInit {
           }
       );
   }
+
+  validateUser(){
+      if(this.validateService.check(this.editUser.$password)){
+        if(this.new_password1 === this.new_password2){
+            this.updateUser();
+        }
+        else{
+            alert('new pw doesn\'t matched');
+        }
+      }
+      else{
+          alert('wrong password!');
+      }
+  }
+
   updateUser():void{
     console.log("Updating user information!");
     // console.log(this.editUser);

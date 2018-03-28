@@ -30,6 +30,7 @@ import { AuthGuard } from './services/auth-guard/auth.guard';
 import { AuthTokenService } from './services/cache/authToken/auth-token.service';
 import { RegisterService } from './services/register/register.service';
 import { UpdateUserService } from './services/update-user/update-user.service';
+import { ValidateService } from './services/validate/validate.service';
 
 
 
@@ -68,7 +69,8 @@ import { UpdateUserService } from './services/update-user/update-user.service';
     AuthGuard,
     AuthTokenService,
     RegisterService,
-    UpdateUserService
+    UpdateUserService,
+    ValidateService
   ],
   bootstrap: [AppComponent]
 })

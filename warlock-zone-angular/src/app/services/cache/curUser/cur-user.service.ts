@@ -17,7 +17,11 @@ export class CurUserService {
         this.curUser.next(newUser);
     }
 
-    //use this to get the user object
+    getStaticUser(){
+        return this.curUser.getValue();
+    }
+    
+    //use this to subscribe to the user object
     getUser(){
         return this.observeCurUser;
     }

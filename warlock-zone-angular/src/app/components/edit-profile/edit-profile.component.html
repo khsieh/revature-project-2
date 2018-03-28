@@ -28,15 +28,15 @@
                 <input [(ngModel)]="this.editUser.password" required name="current_password" type="password" class="form-control" id="current_password" placeholder="hellothisispassword">
             </div>    
             <!-- new password -->
-            <!-- <div class="form-group">
+            <div class="form-group">
                 <label class="font-weight-bold" for="new_password1">New Password</label>
                 <input [(ngModel)]="new_password1" required name="new_password1" type="password" class="form-control" id="new_password1" placeholder="New Password">
-            </div> -->
+            </div>
             <!-- confirm new pw -->
-            <!-- <div class="form-group">
+            <div class="form-group">
                 <label class="font-weight-bold" for="new_password2">Confirm New Password</label>
                 <input [(ngModel)]="new_password2" required name="new_password2" type="password" class="form-control" id="new_password2" placeholder="Confirm new Passowrd">
-            </div> -->
+            </div>
             <div class="form-group">
                 <label class="font-weight-bold" for="new_img">Profile Image</label>
                 <input [(ngModel)]="new_img" required name="new_img" type="file" accept="image/*" class="form-control" id="new_img">
@@ -46,6 +46,6 @@
     </div>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')" (click)="updateUser()"> Update </button>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')" (click)="validateUser()"> Update </button>
     <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Cancel</button>
 </div>
