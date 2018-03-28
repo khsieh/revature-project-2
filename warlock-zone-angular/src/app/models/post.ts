@@ -3,12 +3,13 @@ import { User } from "./user";
 export class Post {
     
     postID:number;
-    author:User;
-    content:string;
-    likes:number;
-    picture: Blob; //blob? s3?
+    user:User;
+    message:string;
+	likes:number;
+	likedBy: number[]; //set of userIDs that have liked the post.
+    image: Blob; //blob? s3?
 
-    constructor() {}
+    constructor( ) {}
     
     /*
     constructor(
@@ -26,6 +27,10 @@ export class Post {
     }
     */
 
+	// ngOnInit(){
+
+	// }
+
     //postID
 	public get $postID(): number {
 		return this.postID;
@@ -36,21 +41,21 @@ export class Post {
     }
     
     //author
-	public get $author(): User {
-		return this.author;
+	public get $user(): User {
+		return this.user;
 	}
 
-	public set $author(value: User) {
-		this.author = value;
+	public set $user(value: User) {
+		this.user = value;
 	}
 
     //content
-	public get $content(): string {
-		return this.content;
+	public get $message(): string {
+		return this.message;
 	}
 
-	public set $content(value: string) {
-		this.content = value;
+	public set $message(value: string) {
+		this.message = value;
 	}
     
     //likes
@@ -62,13 +67,36 @@ export class Post {
 		this.likes = value;
 	}
  
-    //image
-	public get $picture(): Blob {
-		return this.picture;
+	//likedBy
+	public get $likedBy(): number[] {
+		return this.likedBy;
 	}
 
-	public set $picture(value: Blob) {
-		this.picture = value;
+	public set $likedBy(value: number[]) {
+		this.likedBy = value;
+    }
+
+    //image
+	public get $image(): Blob {
+		return this.image;
 	}
-    
+
+	public set $image(value: Blob) {
+		this.image = value;
+	}
+	
+	//?? not sure if this is how we are doing it
+	public addUserIDtoLikedBy(userID){
+		this.likedBy.push(userID);
+	}
+
+	public getJSON() {
+		// let postJson = {'message':null, 'likes':null, 'image':null, 'user': null};
+		// postJson.message = this.message;
+		// postJson.likes = 5;
+		// postJson.image = null;
+		// postJson.user = this.user;
+		return JSON.parse(JSON.stringify(this));
+	}
+
 }

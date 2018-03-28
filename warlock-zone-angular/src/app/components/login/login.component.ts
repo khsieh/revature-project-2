@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
                     //set obserable currentUsesr
                     this.currentUser.setUser(newUser);
                 }
-                //redirect them to app-home
+                // redirect them to app-home
                 this.router.navigate(["home"]);
             },
             err=>{
