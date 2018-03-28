@@ -1,2 +1,34 @@
-2018-03-28 03:44:24 INFO  WarlockZoneApplication:11:	- Starting spring application
-2018-03-28 03:44:25 INFO  WarlockZoneApplication:11:	- Starting spring application
+2018-03-28 00:29:22 INFO  WarlockZoneApplication:11:	- Starting spring application
+2018-03-28 00:29:23 INFO  WarlockZoneApplication:11:	- Starting spring application
+2018-03-28 00:32:33 INFO  WarlockZoneApplication:11:	- Starting spring application
+2018-03-28 00:32:33 INFO  WarlockZoneApplication:11:	- Starting spring application
+2018-03-28 00:33:40 INFO  WarlockZoneApplication:11:	- Starting spring application
+2018-03-28 00:33:41 INFO  WarlockZoneApplication:11:	- Starting spring application
+2018-03-28 00:34:15 INFO  LoginController:34:	- login: username: The Warlock, password: rolltide
+2018-03-28 00:34:15 INFO  LoginController:41:	- login result	 User [userID=1, username=The Warlock, password=null, firstName=Matt, lastName=Knight, email=mKnight@gmail.com]
+2018-03-28 00:45:22 INFO  PostController:44:	- addPost: Post [postId=0, message=null, timeStamp=null, likes=null, user=null]
+2018-03-28 00:45:44 INFO  PostController:44:	- addPost: Post [postId=0, message=null, timeStamp=null, likes=null, user=null]
+2018-03-28 00:46:40 INFO  PostController:44:	- addPost: Post [postId=0, message=null, timeStamp=null, likes=null, user=null]
+2018-03-28 00:46:59 INFO  PostController:44:	- addPost: Post [postId=0, message=null, timeStamp=null, likes=null, user=null]
+2018-03-28 00:49:36 INFO  PostController:103:	- getRecentPosts: 3
+2018-03-28 00:49:51 INFO  PostController:103:	- getRecentPosts: 2
+2018-03-28 00:50:31 INFO  PostController:85:	- getPost: 2
+2018-03-28 00:50:48 INFO  PostController:85:	- getPost: 17
+2018-03-28 10:09:50 INFO  WarlockZoneApplication:11:	- Starting spring application
+2018-03-28 10:09:50 INFO  WarlockZoneApplication:11:	- Starting spring application
+2018-03-28 10:10:50 INFO  WarlockZoneApplication:11:	- Starting spring application
+2018-03-28 10:10:50 INFO  WarlockZoneApplication:11:	- Starting spring application
+2018-03-28 10:12:41 INFO  UserController:26:	- addUser User [userID=0, username=test, password=test, firstName=test, lastName=test, email=test]
+2018-03-28 10:15:36 INFO  LoginController:34:	- login: username: test, password: test
+2018-03-28 10:15:36 INFO  LoginController:40:	- login result	 null
+2018-03-28 10:16:34 INFO  LoginController:34:	- login: username: test, password: test
+2018-03-28 10:16:34 INFO  LoginController:40:	- login result	 null
+2018-03-28 10:37:32 INFO  WarlockZoneApplication:11:	- Starting spring application
+2018-03-28 10:37:55 INFO  LoginController:34:	- login: username: test, password: test
+2018-03-28 10:37:55 INFO  LoginController:40:	- login result	 User [userID=13, username=test, password=$2a$10$LKPFkOErIBgkW/2wvk7uJuG0DS77gf0YThDFtzkZTOPVWCZF.hkL., firstName=test, lastName=test, email=test]
+2018-03-28 15:41:16 INFO  WarlockZoneApplication:11:	- Starting spring application
+2018-03-28 15:41:17 INFO  WarlockZoneApplication:11:	- Starting spring application
+2018-03-28 15:45:24 INFO  LoginController:34:	- login: username: hello, password: 123123
+2018-03-28 15:45:35 INFO  LoginController:40:	- login result	 null
+2018-03-28 15:45:55 INFO  LoginController:34:	- login: username: test, password: test
+2018-03-28 15:46:17 INFO  LoginController:40:	- login result	 User [userID=13, username=test, password=$2a$10$LKPFkOErIBgkW/2wvk7uJuG0DS77gf0YThDFtzkZTOPVWCZF.hkL., firstName=test, lastName=test, email=test]

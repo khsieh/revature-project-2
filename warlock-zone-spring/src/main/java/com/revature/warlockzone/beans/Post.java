@@ -77,7 +77,8 @@ public class Post {
 			user.setPassword("null");
 		}
 		return likes;
-	}
+    }
+    
 	@Override
 	public String toString() {
 		return "Post [postId=" + postId + ", message=" + message + ", timeStamp=" + timeStamp + ", likes=" + likes

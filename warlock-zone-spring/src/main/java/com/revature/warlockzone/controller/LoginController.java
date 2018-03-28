@@ -1,5 +1,8 @@
 package com.revature.warlockzone.controller;
 
+import java.util.List;
+import java.util.UUID;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,11 +11,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.warlockzone.WarlockZoneApplication;
 import com.revature.warlockzone.beans.User;
 import com.revature.warlockzone.services.LoginService;
+import com.revature.warlockzone.services.UserService;
 
 @RestController
 @CrossOrigin
@@ -22,14 +26,31 @@ public class LoginController {
 	LoginService loginService;
 	@Autowired
 	User user;
-	
+	@Autowired
+	UserService userService;
 	//Response entity takes care of returning status
 	@RequestMapping(method = RequestMethod.POST, value = "/login")
 	public ResponseEntity<User> login(@RequestBody User user){
 		log.info("login: username: " +user.getUsername() + ", password: " +  user.getPassword());
 	    user = loginService.authenticate(user.getUsername(), user.getPassword());
+	    if(user != null) {
+	    	user.setToken(UUID.randomUUID().toString());
+	    	userService.updateToken(user);
+	    }
 	    log.info("login result\t " + ((user==null) ? "null" : user.toString()));
 	    return (user==null) ? ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null) : ResponseEntity.status(HttpStatus.ACCEPTED).body(user);
+	}
+	
+	//logout servlet
+	@RequestMapping(method = RequestMethod.POST, value = "/logout")
+	public ResponseEntity logout(@RequestParam("token") String tokens){
+		List<User> user = userService.getAllUsers();
+		for(int i = 0; i < user.size(); i++) {
+			if(user.get(i).getToken().equals(tokens)) {
+				user.get(i).setToken(null);
+			}
+		}
+        return new ResponseEntity(HttpStatus.ACCEPTED);
 	}
 	
 }

@@ -30,7 +30,16 @@ public class User {
 	@Column(unique = true)
 	private String email;
 	private String profilePicture;
-	
+	private String token;
+
+	public String getToken() {
+		return token;
+	}
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+
 	@ManyToMany
 	private List<Post> posts = new ArrayList<Post>();
 	
@@ -75,19 +84,13 @@ public class User {
 	}
 	public void setProfilePicture(String profilePicture) {
 		this.profilePicture = profilePicture;
-	}
-//	public List<Post> getPosts() {
-//		return posts;
-//	}
-//	public void setPosts(List<Post> posts) {
-//		this.posts = posts;
-//	}
+    }
+    
 	@Override
 	public String toString() {
 		return "User [userID=" + userID + ", username=" + username + ", password=" + password + ", firstName="
 				+ firstName + ", lastName=" + lastName + ", email=" + email + "]";
 	}
-	
 	
 	public void setPosts(List<Post> posts) {
 		this.posts = posts;

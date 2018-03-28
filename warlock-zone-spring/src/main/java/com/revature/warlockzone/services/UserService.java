@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.revature.warlockzone.beans.Post;
 import com.revature.warlockzone.beans.User;
 import com.revature.warlockzone.dao.UserDAO;
 
@@ -18,6 +18,21 @@ public class UserService {
 	@Autowired
 	User user;
 	
+public User authenticate(String username, String password) {
+		
+		user = getUserByUsername(username);
+		
+		if(user.getPassword().equals(password)) {
+			user.setPassword(null);
+			return user;
+		}
+		else {
+			//user and pass are not equal
+			return null;
+		}
+	}
+	
+	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	public List<User> getAllUsers(){
 		//probably need to change this
 		return secureUsers(userDao.findAll());	
@@ -35,10 +50,15 @@ public class UserService {
 	}
 	
 	public void addUser(User user) {
+		String hashedPassword = passwordEncoder.encode(user.getPassword());
+		user.setPassword(hashedPassword);
+
 		userDao.save(user);
 	}
 	
 	public void updateUser(User user) {
+		String hashedPassword = passwordEncoder.encode(user.getPassword());
+		user.setPassword(hashedPassword);
 		userDao.save(user);
 	}
 	
@@ -58,5 +78,12 @@ public class UserService {
 		
 		return users;
 	}
+	public void updateToken(User user) {
+		userDao.save(user);
+	}
+	public void deleteToken(int id) {
+		userDao.save(user);
+	}
+	
 	
 }
