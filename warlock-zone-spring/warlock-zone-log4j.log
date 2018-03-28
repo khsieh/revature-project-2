@@ -26,3 +26,9 @@
 2018-03-28 10:37:32 INFO  WarlockZoneApplication:11:	- Starting spring application
 2018-03-28 10:37:55 INFO  LoginController:34:	- login: username: test, password: test
 2018-03-28 10:37:55 INFO  LoginController:40:	- login result	 User [userID=13, username=test, password=$2a$10$LKPFkOErIBgkW/2wvk7uJuG0DS77gf0YThDFtzkZTOPVWCZF.hkL., firstName=test, lastName=test, email=test]
+2018-03-28 15:41:16 INFO  WarlockZoneApplication:11:	- Starting spring application
+2018-03-28 15:41:17 INFO  WarlockZoneApplication:11:	- Starting spring application
+2018-03-28 15:45:24 INFO  LoginController:34:	- login: username: hello, password: 123123
+2018-03-28 15:45:35 INFO  LoginController:40:	- login result	 null
+2018-03-28 15:45:55 INFO  LoginController:34:	- login: username: test, password: test
+2018-03-28 15:46:17 INFO  LoginController:40:	- login result	 User [userID=13, username=test, password=$2a$10$LKPFkOErIBgkW/2wvk7uJuG0DS77gf0YThDFtzkZTOPVWCZF.hkL., firstName=test, lastName=test, email=test]
