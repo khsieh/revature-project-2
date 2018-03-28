@@ -85,6 +85,7 @@ public class Post {
 				+ ", user=" + user + "]";
 	}
 	
+	
 	public void setLikes(List<User> likes) {
 		this.likes = likes;
 	}

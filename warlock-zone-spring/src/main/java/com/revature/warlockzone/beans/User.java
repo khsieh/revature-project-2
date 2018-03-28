@@ -30,7 +30,16 @@ public class User {
 	@Column(unique = true)
 	private String email;
 	private String profilePicture;
-	
+	private String token;
+
+	public String getToken() {
+		return token;
+	}
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+
 	@ManyToMany
 	private List<Post> posts = new ArrayList<Post>();
 	
