@@ -34,6 +34,16 @@ export class ProfileComponent implements OnInit {
                 console.log(err);
             }
         );
+
+        this.tService.curStateAsObserable.subscribe(
+          resp=>{
+            this.viewPost = resp;
+          },
+          err=>{
+              
+          }
+        );
+
     }
 
     editProfile(){
