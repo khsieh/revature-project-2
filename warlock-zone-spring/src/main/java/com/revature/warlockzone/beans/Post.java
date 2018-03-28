@@ -33,7 +33,7 @@ public class Post {
 	@CreationTimestamp
 	private Date timeStamp;
 
-	private byte[] image;
+	private String image;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "USERID")
@@ -60,10 +60,10 @@ public class Post {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public byte[] getImage() {
+	public String getImage() {
 		return image;
 	}
-	public void setImage(byte[] image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 	public Date getTimeStamp() {

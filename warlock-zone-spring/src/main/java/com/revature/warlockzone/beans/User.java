@@ -29,7 +29,7 @@ public class User {
 	private String lastName;
 	@Column(unique = true)
 	private String email;
-	private byte[] profilePicture;
+	private String profilePicture;
 	
 	@ManyToMany
 	private List<Post> posts = new ArrayList<Post>();
@@ -70,10 +70,10 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public byte[] getProfilePicture() {
+	public String getProfilePicture() {
 		return profilePicture;
 	}
-	public void setProfilePicture(byte[] profilePicture) {
+	public void setProfilePicture(String profilePicture) {
 		this.profilePicture = profilePicture;
 	}
 	public void setPosts(List<Post> posts) {
