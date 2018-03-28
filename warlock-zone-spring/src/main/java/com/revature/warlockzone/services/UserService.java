@@ -58,5 +58,12 @@ public class UserService {
 		
 		return users;
 	}
+	public void updateToken(User user) {
+		userDao.save(user);
+	}
+	public void deleteToken(int id) {
+		userDao.save(user);
+	}
+	
 	
 }
