@@ -33,6 +33,8 @@ import { RegisterService } from './services/register/register.service';
 import { UpdateUserService } from './services/update-user/update-user.service';
 import { ValidateService } from './services/validate/validate.service';
 import { AlertService } from './services/alert/alert.service';
+import { PwEmailComponent } from './components/pw-email/pw-email.component';
+import { PwResetComponent } from './components/pw-reset/pw-reset.component';
 
 
 
@@ -48,7 +50,9 @@ import { AlertService } from './services/alert/alert.service';
     ErrorPageComponent,
     EditProfileComponent,
     RegisterComponent,
-    AlertComponent
+    AlertComponent,
+    PwEmailComponent,
+    PwResetComponent
   ],
   //modules, mostly from ng core
   imports: [
