@@ -1,0 +1,26 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 offset-4">
+            <div class="vertical-center">
+                <div class="jumbotron rounded p-5">
+                    <h4>Please Enter your new Password</h4>
+                    <form>
+                        <!-- new password -->
+                        <div class="form-group">
+                            <label class="font-weight-bold" for="new_password1">New Password</label>
+                            <input [(ngModel)]="new_password1" required name="new_password1" type="password" class="form-control" id="new_password1"
+                                placeholder="New Password">
+                        </div>
+                        <!-- confirm new pw -->
+                        <div class="form-group">
+                            <label class="font-weight-bold" for="new_password2">Confirm New Password</label>
+                            <input [(ngModel)]="new_password2" required name="new_password2" type="password" class="form-control" id="new_password2"
+                                placeholder="Confirm new Passowrd">
+                        </div>
+                    </form>
+                    <button type="button" class="btn btn-outline-dark" (click)="sendEmail()"> Send </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

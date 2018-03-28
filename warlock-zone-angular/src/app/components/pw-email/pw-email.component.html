@@ -1,0 +1,20 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 offset-4">
+            <div class="vertical-center">
+            <div class="jumbotron rounded p-5">
+                <h4>Password Reset</h4>
+                <!-- <label class="font-weight-bold" for="password_reset">Please enter your email</label> -->
+                <form>
+                <!-- email -->
+                <div class="form-group">
+                    <label class="font-weight-bold" for="this.reset_email">Email</label>
+                    <input [(ngModel)]="this.reset_email" name="this.reset_email" type="text" class="form-control" id="reset_email" placeholder="email">
+                </div>
+                </form>
+                <button type="button" class="btn btn-outline-dark" (click)="sendEmail()"> Send </button>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
