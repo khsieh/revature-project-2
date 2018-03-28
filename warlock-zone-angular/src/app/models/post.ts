@@ -2,11 +2,11 @@ import { User } from "./user";
 
 export class Post {
     
-    postID:number;
+    postId:number;
     user:User;
     message:string;
-	likes:number;
-	likedBy: number[]; //set of userIDs that have liked the post.
+	likes:string[];
+	// likedBy: number[]; //set of userIDs that have liked the post.
     image: Blob; //blob? s3?
 
     constructor( ) {}
@@ -33,11 +33,11 @@ export class Post {
 
     //postID
 	public get $postID(): number {
-		return this.postID;
+		return this.postId;
 	}
 
 	public set $postID(value: number) {
-		this.postID = value;
+		this.postId = value;
     }
     
     //author
@@ -59,22 +59,22 @@ export class Post {
 	}
     
     //likes
-	public get $likes(): number {
+	public get $likes(): string[] {
 		return this.likes;
 	}
 
-	public set $likes(value: number) {
+	public set $likes(value: string[]) {
 		this.likes = value;
 	}
  
-	//likedBy
-	public get $likedBy(): number[] {
-		return this.likedBy;
-	}
+	// //likedBy
+	// public get $likedBy(): number[] {
+	// 	return this.likedBy;
+	// }
 
-	public set $likedBy(value: number[]) {
-		this.likedBy = value;
-    }
+	// public set $likedBy(value: number[]) {
+	// 	this.likedBy = value;
+    // }
 
     //image
 	public get $image(): Blob {
@@ -85,10 +85,10 @@ export class Post {
 		this.image = value;
 	}
 	
-	//?? not sure if this is how we are doing it
-	public addUserIDtoLikedBy(userID){
-		this.likedBy.push(userID);
-	}
+	// //?? not sure if this is how we are doing it
+	// public addUserIDtoLikedBy(userID){
+	// 	this.likes.push(userID);
+	// }
 
 	public getJSON() {
 		// let postJson = {'message':null, 'likes':null, 'image':null, 'user': null};

@@ -1,4 +1,13 @@
-.bg {
-    background-image: url("https://www.pexels.com/photo/abstract-art-background-blur-220072/");
+body{
+    height: 100%;
+    /* background-color: blueviolet; */
+    background-image: '../assets/purpleBG.jpeg'
 
+}
+
+.app-style {
+    /* background-image: url("https://www.pexels.com/photo/abstract-art-background-blur-220072/"); */
+    
+    height: 100%;
+    background-color: #582A72;
 }

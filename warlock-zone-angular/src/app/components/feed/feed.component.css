@@ -2,14 +2,13 @@
     text-align: "right";
 }
 
-:host {
-    background-image: url("https://www.pexels.com/photo/abstract-art-background-blur-220072/");
-
+.col-md-9{
+    background-color: #9775AA;
+}
+.input[name="mainJumbo"]{
+    background-color: #582A72;
 }
 
-body {
-    background-color: #764B8E;
-  }
 
 
 .row.no-gutters.jumbotron {
