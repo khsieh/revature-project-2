@@ -26,12 +26,10 @@
 
 	<dependencies>
 	<!-- Send forgot password link to email -->
-
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-mail</artifactId>
-    </dependency>
-	
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-mail</artifactId>
+	    </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
@@ -74,12 +72,17 @@
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc8</artifactId>
 			<version>12.2.0.1</version>
-        	</dependency>
-        	<dependency>
+        </dependency>
+        <dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
-    		</dependency>
+   		</dependency>
+    	<dependency>
+	        <groupId>com.amazonaws</groupId>
+	        <artifactId>aws-java-sdk</artifactId>
+	        <version>1.11.301</version>
+    	</dependency>
 	</dependencies>
 
 	<build>
