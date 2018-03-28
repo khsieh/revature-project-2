@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal,NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { User } from '../../models/user';
+import { CurUserService } from '../../services/cache/curUser/cur-user.service';
+import { UpdateUserService } from '../../services/update-user/update-user.service';
+import { ValidateService } from '../../services/validate/validate.service';
+import { AlertService } from '../../services/alert/alert.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -10,24 +14,64 @@ import { User } from '../../models/user';
 export class EditProfileComponent implements OnInit {
 
 
-  editUser: User;
+  editUser: User = new User();
   new_password1: string;
   new_password2: string;
+  new_img;
 
-  constructor(public activeModal: NgbActiveModal)
-  { }
+  constructor(
+      public activeModal: NgbActiveModal,
+      private curUser:CurUserService,
+      private updateService:UpdateUserService,
+      private validateService:ValidateService,
+      private alertService:AlertService
+    ){}
 
   ngOnInit() {
       //this should be initalized by the current logged in user
-      this.editUser = new User();
-      this.editUser.$firstName = "Matt";
-      this.editUser.$lastName = "Warlock";
-      this.editUser.$email = "warlock@zone.org";
-      this.editUser.$username = "warloccZ0ne";
+      this.curUser.getUser().subscribe(
+          resp=>{
+            this.editUser.setAll(resp);
+          },
+          err=>{
+            console.log(err);
+          }
+      );
   }
+
+  validateUser(){
+      if(this.validateService.check(this.editUser.$password)){
+        if(this.new_password1 === this.new_password2){
+            this.updateUser();
+            this.activeModal.close('Close');
+        }
+        else{
+            this.alertService.error("new pw mismatched!");
+            // alert('new pw doesn\'t matched');
+        }
+      }
+      else{
+        this.alertService.error("wrong pw!");
+        //   alert('wrong password!');
+      }
+  }
+
   updateUser():void{
     console.log("Updating user information!");
-    console.log("check if current password is correct");
-    console.log("check if new passwords match up");
+    // console.log(this.editUser);
+    //TODO need a way to check pw only? or should I just do /username
+    this.updateService.update(this.editUser).subscribe(
+        resp=>{
+            console.log("update user successfully!");
+            //update curUser
+            console.log(this.editUser);
+            this.curUser.setUser(this.editUser);
+        },
+        err=>{
+            
+            console.log(err);
+            // console.log("you done fucked up!");
+        });
   }
+
 }

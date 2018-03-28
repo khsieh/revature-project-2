@@ -13,11 +13,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { LogoutComponent } from './components/logout/logout.component';
 import { FeedComponent } from './components/feed/feed.component';
 import { PostComponent } from './components/post/post.component';
 import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 //services
 import { LoginService } from './services/login/login.service';
@@ -26,6 +26,15 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 import { PostsService } from './services/posts/posts.service';
 import { ToggleNewPostService } from './services/util/toggle-new-post.service';
 import { CurUserService } from './services/cache/curUser/cur-user.service';
+import { LogoutService } from './services/logout/logout.service';
+import { AuthGuard } from './services/auth-guard/auth.guard';
+import { AuthTokenService } from './services/cache/authToken/auth-token.service';
+import { RegisterService } from './services/register/register.service';
+import { UpdateUserService } from './services/update-user/update-user.service';
+import { ValidateService } from './services/validate/validate.service';
+import { AlertService } from './services/alert/alert.service';
+import { PwEmailComponent } from './components/pw-email/pw-email.component';
+import { PwResetComponent } from './components/pw-reset/pw-reset.component';
 
 
 
@@ -35,13 +44,15 @@ import { CurUserService } from './services/cache/curUser/cur-user.service';
     AppComponent,
     LoginComponent,
     ProfileComponent,
-    LogoutComponent,
     FeedComponent,
     PostComponent,
     HomeComponent,
     ErrorPageComponent,
     EditProfileComponent,
-    RegisterComponent
+    RegisterComponent,
+    AlertComponent,
+    PwEmailComponent,
+    PwResetComponent
   ],
   //modules, mostly from ng core
   imports: [
@@ -60,7 +71,14 @@ import { CurUserService } from './services/cache/curUser/cur-user.service';
     LoginService,
     PostsService,
     ToggleNewPostService,
-    CurUserService
+    CurUserService,
+    LogoutService,
+    AuthGuard,
+    AuthTokenService,
+    RegisterService,
+    UpdateUserService,
+    ValidateService,
+    AlertService
   ],
   bootstrap: [AppComponent]
 })

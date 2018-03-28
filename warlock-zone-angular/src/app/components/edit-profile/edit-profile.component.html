@@ -19,7 +19,7 @@
             </div>
             <!-- email -->
             <div class="form-group">
-                <label class="font-weight-bold" for="email_edit">email</label>
+                <label class="font-weight-bold" for="email_edit">Email</label>
                 <input [(ngModel)]="this.editUser.email" name="email_edit" type="text" class="form-control" id="email_edit" placeholder="spell@warlockzone.com">
             </div>
             <!-- current password -->
@@ -37,11 +37,17 @@
                 <label class="font-weight-bold" for="new_password2">Confirm New Password</label>
                 <input [(ngModel)]="new_password2" required name="new_password2" type="password" class="form-control" id="new_password2" placeholder="Confirm new Passowrd">
             </div>
-            
+            <div class="form-group">
+                <label class="font-weight-bold" for="new_img">Profile Image</label>
+                <input [(ngModel)]="new_img" required name="new_img" type="file" accept="image/*" class="form-control" id="new_img">
+            </div>
+
         </form>
     </div>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')" (click)="updateUser()"> Update </button>
+    <alert></alert>
+    <!-- (click)="activeModal.close('Close click')"  -->
+    <button type="button" class="btn btn-outline-dark" (click)="validateUser()"> Update </button> 
     <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Cancel</button>
 </div>

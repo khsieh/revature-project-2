@@ -6,6 +6,7 @@ import { EditProfileComponent } from '../edit-profile/edit-profile.component';
 import { ToggleNewPostService } from '../../services/util/toggle-new-post.service';
 import { CurUserService } from '../../services/cache/curUser/cur-user.service';
 import { User } from '../../models/user';
+import { LogoutService } from '../../services/logout/logout.service';
 
 @Component({
   selector: 'app-profile',
@@ -20,20 +21,29 @@ export class ProfileComponent implements OnInit {
         private router:Router, 
         private editModal:NgbModal,
         private curUserService:CurUserService, 
-        private tService:ToggleNewPostService
+        private tService:ToggleNewPostService,
+        private logoutService:LogoutService
     ) { }
 
     ngOnInit() {
         this.curUserService.getUser().subscribe(
             resp=>{
                 this.currentUser.setAll(resp);
-                // console.log("Obserable: " + resp.$email);
-                // console.log(this.currentUser.$email);
             },
             err=>{
                 console.log(err);
             }
         );
+
+        this.tService.curStateAsObserable.subscribe(
+          resp=>{
+            this.viewPost = resp;
+          },
+          err=>{
+              
+          }
+        );
+
     }
 
     editProfile(){
@@ -44,4 +54,9 @@ export class ProfileComponent implements OnInit {
         this.viewPost = !this.viewPost;
         this.tService.changeDisplay(this.viewPost);
     }
+
+    logout(){
+        this.logoutService.bye();
+    }
+
 }
