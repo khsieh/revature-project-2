@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,6 +27,12 @@ public class UserController {
 	public void addUser(@RequestBody User user) {
 		log.info("addUser " + user.toString());
 		userService.addUser(user);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/validateUser")
+	public ResponseEntity<User> login(@RequestBody User user){
+	    user = userService.authenticate(user.getUsername(), user.getPassword());
+	    return (user==null) ? ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null) : ResponseEntity.status(HttpStatus.ACCEPTED).body(null);
 	}
 	
 	@RequestMapping("/user")

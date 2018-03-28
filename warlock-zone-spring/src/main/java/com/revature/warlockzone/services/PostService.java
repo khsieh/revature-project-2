@@ -48,6 +48,10 @@ public class PostService {
 		return securePosts(postDao.findFirst10ByPostIdLessThanOrderByPostIdDesc(id));
 	}
 	
+	public List<Post> getPostsByUser(User user){
+		return securePosts(postDao.findAllByUser(user));	
+	}
+	
 	private List<Post> securePosts(List<Post> posts) {
 		
 		for(int i = 0; i < posts.size(); i++) {
@@ -55,5 +59,12 @@ public class PostService {
 		}
 		
 		return posts;
+	}
+	
+	private void secureLikes(List<User> users) {
+		
+		for(int i = 0; i < users.size(); i++) {
+			users.get(i).setPassword("null");
+		}
 	}
 }

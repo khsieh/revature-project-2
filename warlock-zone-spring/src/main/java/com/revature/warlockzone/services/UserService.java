@@ -18,6 +18,20 @@ public class UserService {
 	@Autowired
 	User user;
 	
+public User authenticate(String username, String password) {
+		
+		user = getUserByUsername(username);
+		
+		if(user.getPassword().equals(password)) {
+			user.setPassword(null);
+			return user;
+		}
+		else {
+			//user and pass are not equal
+			return null;
+		}
+	}
+	
 	public List<User> getAllUsers(){
 		//probably need to change this
 		return secureUsers(userDao.findAll());	

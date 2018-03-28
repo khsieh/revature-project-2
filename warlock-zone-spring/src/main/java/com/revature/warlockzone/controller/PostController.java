@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.warlockzone.beans.Post;
-import com.revature.warlockzone.dao.PostDAO;
+import com.revature.warlockzone.beans.User;
 import com.revature.warlockzone.services.PostService;
 
 @RestController
@@ -34,6 +34,11 @@ public class PostController {
 		log.info("addAndRetrieve: " + post.toString());
 		postService.addPost(post);
 		return postService.getLastTenPosts();
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/postByUser")
+	public List<Post> getUserPosts(@RequestBody User user){
+		return postService.getPostsByUser(user);
 	}
 	
 	@RequestMapping("/post")
