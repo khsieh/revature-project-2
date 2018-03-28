@@ -14,3 +14,15 @@
 2018-03-28 00:49:51 INFO  PostController:103:	- getRecentPosts: 2
 2018-03-28 00:50:31 INFO  PostController:85:	- getPost: 2
 2018-03-28 00:50:48 INFO  PostController:85:	- getPost: 17
+2018-03-28 10:09:50 INFO  WarlockZoneApplication:11:	- Starting spring application
+2018-03-28 10:09:50 INFO  WarlockZoneApplication:11:	- Starting spring application
+2018-03-28 10:10:50 INFO  WarlockZoneApplication:11:	- Starting spring application
+2018-03-28 10:10:50 INFO  WarlockZoneApplication:11:	- Starting spring application
+2018-03-28 10:12:41 INFO  UserController:26:	- addUser User [userID=0, username=test, password=test, firstName=test, lastName=test, email=test]
+2018-03-28 10:15:36 INFO  LoginController:34:	- login: username: test, password: test
+2018-03-28 10:15:36 INFO  LoginController:40:	- login result	 null
+2018-03-28 10:16:34 INFO  LoginController:34:	- login: username: test, password: test
+2018-03-28 10:16:34 INFO  LoginController:40:	- login result	 null
+2018-03-28 10:37:32 INFO  WarlockZoneApplication:11:	- Starting spring application
+2018-03-28 10:37:55 INFO  LoginController:34:	- login: username: test, password: test
+2018-03-28 10:37:55 INFO  LoginController:40:	- login result	 User [userID=13, username=test, password=$2a$10$LKPFkOErIBgkW/2wvk7uJuG0DS77gf0YThDFtzkZTOPVWCZF.hkL., firstName=test, lastName=test, email=test]

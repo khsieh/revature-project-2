@@ -3,6 +3,7 @@ package com.revature.warlockzone.services;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.revature.warlockzone.beans.User;
@@ -14,16 +15,20 @@ public class LoginService {
 	UserService userService;
 	@Autowired
 	User user;
+	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
 	
 	public User authenticate(String username, String password) {
 		
 		user = userService.getUserByUsername(username);
 		
+		//	user.setPassword(hashedPassword);
 		if(user == null) {
 			return null;
 		}
-		else if(user.getPassword().equals(password)) {
-			user.setPassword(null);
+		//match input user from encrypted database
+		else if(passwordEncoder.matches(password, user.getPassword())) {
+		//	user.setPassword(null);
 			return user;
 		}
 		else {

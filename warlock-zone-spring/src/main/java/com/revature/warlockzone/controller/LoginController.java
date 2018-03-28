@@ -36,7 +36,6 @@ public class LoginController {
 	    if(user != null) {
 	    	user.setToken(UUID.randomUUID().toString());
 	    	userService.updateToken(user);
-	    	System.out.println(user.getToken());
 	    }
 	    log.info("login result\t " + ((user==null) ? "null" : user.toString()));
 	    return (user==null) ? ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null) : ResponseEntity.status(HttpStatus.ACCEPTED).body(user);
