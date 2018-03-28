@@ -17,6 +17,7 @@ import { FeedComponent } from './components/feed/feed.component';
 import { PostComponent } from './components/post/post.component';
 import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 //services
 import { LoginService } from './services/login/login.service';
@@ -31,6 +32,7 @@ import { AuthTokenService } from './services/cache/authToken/auth-token.service'
 import { RegisterService } from './services/register/register.service';
 import { UpdateUserService } from './services/update-user/update-user.service';
 import { ValidateService } from './services/validate/validate.service';
+import { AlertService } from './services/alert/alert.service';
 
 
 
@@ -45,7 +47,8 @@ import { ValidateService } from './services/validate/validate.service';
     HomeComponent,
     ErrorPageComponent,
     EditProfileComponent,
-    RegisterComponent
+    RegisterComponent,
+    AlertComponent
   ],
   //modules, mostly from ng core
   imports: [
@@ -70,7 +73,8 @@ import { ValidateService } from './services/validate/validate.service';
     AuthTokenService,
     RegisterService,
     UpdateUserService,
-    ValidateService
+    ValidateService,
+    AlertService
   ],
   bootstrap: [AppComponent]
 })

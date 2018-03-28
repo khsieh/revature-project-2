@@ -3,11 +3,13 @@ import { HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
+import { User } from '../../models/user';
+
 import { LoginService } from '../../services/login/login.service';
 import { RegisterComponent } from '../register/register.component';
 import { CurUserService } from '../../services/cache/curUser/cur-user.service';
-import { User } from '../../models/user';
 import { AuthTokenService } from '../../services/cache/authToken/auth-token.service';
+import { AlertService } from '../../services/alert/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -24,13 +26,17 @@ export class LoginComponent implements OnInit {
         private currentUser:CurUserService,
         private router:Router,
         private regModal:NgbModal,
-        private authService:AuthTokenService
+        private authService:AuthTokenService,
+        private alertService:AlertService
     ) { }
 
     ngOnInit() {
     }
 
-
+    error(message:string){
+        this.alertService.error(message);
+    }
+    
     validate():void {
         console.log('validating user: ' + this.login_username);
         this.loginService.validate(this.login_username,this.login_password).subscribe(
@@ -56,6 +62,7 @@ export class LoginComponent implements OnInit {
             },
             err=>{
                 //pop alert
+                this.error("Wrong Password!");
                 console.log(err.status);
             }
         );
