@@ -1,18 +1,22 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthTokenService } from '../cache/authToken/auth-token.service';
 import { User } from '../../models/user';
-// import { ContentType } from '@angular/http/src/enums';
+import { HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
 
 @Injectable()
-export class RegisterService {
+export class UpdateUserService {
 
     private url:string  = "http://ec2-13-58-228-189.us-east-2.compute.amazonaws.com/user";
 
-    constructor(private htttpClient:HttpClient) { }
+    constructor(
+        private authService:AuthTokenService,
+        private httpClient:HttpClient
+    ) {}
 
-    submit(newUser:User){
-        console.log(newUser);
+    update(newUser:User){
+        let tUrl = this.authService.appendToken(this.url);
         const requestBody = {
+            "userID":newUser.$userID,
             "username":newUser.$username,
             "password":newUser.$password,
             "firstName":newUser.$firstName,
@@ -27,10 +31,6 @@ export class RegisterService {
                 observe:'response'
             })
         }
-        // console.log("REQUEST BODY: " + requestBody);
-        // let newUserJSON = JSON.parse(JSON.stringify(newUser));
-        // console.log(newUserJSON);
-        return this.htttpClient.post(this.url,requestBody,header);
+        return this.httpClient.put(this.url,requestBody,header);
     }
-
 }

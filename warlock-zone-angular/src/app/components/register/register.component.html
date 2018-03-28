@@ -38,7 +38,11 @@
                 <label class="font-weight-bold" for="new_password2">Confirm New Password</label>
                 <input [(ngModel)]="new_password2" required name="new_password2" type="password" class="form-control" id="new_password2" placeholder="Confirm new Passowrd">
             </div>
-            
+            <!-- Profile pic -->
+            <div class="form-group">
+                <label class="font-weight-bold" for="new_ProfilePicture">Confirm New Password</label>
+                <input [(ngModel)]="new_ProfilePicture" required name="new_ProfilePicture" type="file" accept="image/*" class="form-control" id="new_ProfilePicture">
+            </div>
         </form>
     </div>
 </div>

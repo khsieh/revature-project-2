@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit {
             resp=>{
                 let respJSON = JSON.parse(resp.body);
                 if(resp.status == 202){
-                    // console.log(respJSON["firstName"]);
                     //user successfully logged in
                     //storing data in cache obserable
                     let newUser = new User();
@@ -48,8 +47,8 @@ export class LoginComponent implements OnInit {
                     newUser.$profilePicture = respJSON["profilePicture"];
                     newUser.$username = respJSON["username"];
                     newUser.$password = respJSON["password"];
-                    //set obserable currentUsesr
                     this.currentUser.setUser(newUser);
+                    // this.authService.setToken(respJSON["token"]);
                     this.authService.setToken("true");
                 }
                 // redirect them to app-home

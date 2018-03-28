@@ -28,6 +28,8 @@ import { CurUserService } from './services/cache/curUser/cur-user.service';
 import { LogoutService } from './services/logout/logout.service';
 import { AuthGuard } from './services/auth-guard/auth.guard';
 import { AuthTokenService } from './services/cache/authToken/auth-token.service';
+import { RegisterService } from './services/register/register.service';
+import { UpdateUserService } from './services/update-user/update-user.service';
 
 
 
@@ -64,7 +66,9 @@ import { AuthTokenService } from './services/cache/authToken/auth-token.service'
     CurUserService,
     LogoutService,
     AuthGuard,
-    AuthTokenService
+    AuthTokenService,
+    RegisterService,
+    UpdateUserService
   ],
   bootstrap: [AppComponent]
 })
