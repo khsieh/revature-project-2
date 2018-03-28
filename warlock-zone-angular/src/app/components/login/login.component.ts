@@ -7,6 +7,7 @@ import { LoginService } from '../../services/login/login.service';
 import { RegisterComponent } from '../register/register.component';
 import { CurUserService } from '../../services/cache/curUser/cur-user.service';
 import { User } from '../../models/user';
+import { AuthTokenService } from '../../services/cache/authToken/auth-token.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit {
         private loginService:LoginService,
         private currentUser:CurUserService,
         private router:Router,
-        private regModal:NgbModal
+        private regModal:NgbModal,
+        private authService:AuthTokenService
     ) { }
 
     ngOnInit() {
@@ -48,6 +50,7 @@ export class LoginComponent implements OnInit {
                     newUser.$password = respJSON["password"];
                     //set obserable currentUsesr
                     this.currentUser.setUser(newUser);
+                    this.authService.setToken("true");
                 }
                 // redirect them to app-home
                 this.router.navigate(["home"]);

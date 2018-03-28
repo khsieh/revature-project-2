@@ -10,8 +10,9 @@
         <p>{{currentUser.$firstName}} {{currentUser.$lastName}}</p>
         <p>username: {{currentUser.$username}}</p>
         <p>Email: {{currentUser.$email}}</p>
-        <button id="edit-profile" (click)="editProfile()" type="submit" class="btn btn-primary glyphicon glyphicon-edit"> Edit </button>
-        <button id="post-control" (click)="newPostControl()" type="button" class="btn btn-primary"> New Post </button>
+        <button id="edit-profile" (click)="editProfile()" type="submit" class="btn btn-primary glyphicon glyphicon-edit"> Edit </button><br><br>
+        <button id="post-control" (click)="newPostControl()" type="button" class="btn btn-primary"> New Post </button><br><br>
+        <button id="logout" (click)="logout()" type="button" class="btn btn-primary"> Logout </button>
         <br><br>
     </div>
 </div>
