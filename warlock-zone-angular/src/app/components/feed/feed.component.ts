@@ -28,9 +28,7 @@ export class FeedComponent implements OnInit {
     this.maxposts = 10;
     // this.showCommentEntry = showCommentary;
     this.unsubmittedContent = "";
-    // this.currentUser = this.userComp.$user;
-    this.currentUser = new User();
-    this.currentUser.$username = "Cousin Seth";
+    this.currentUser;
 
     // Call service to get Posts from DB
     this.getPostsFromService();
@@ -44,6 +42,13 @@ export class FeedComponent implements OnInit {
             console.log(err);
         }
     );
+
+    this.getCurrentUser();
+  }
+
+  getCurrentUser(){
+    this.curUser.getUser().subscribe( resp =>{this.currentUser = resp}, err=>{console.log("Error: Cur-User Service failed to send back a User object")});
+    // console.log("Current User: "+JSON.stringify(this.currentUser));
   }
 
   //hide/unhide hidden comment section
@@ -54,12 +59,9 @@ export class FeedComponent implements OnInit {
   createPost(){
 
       let newPost = new Post();
-      let user1 = new User();
-      user1.$userID = 1;
-      newPost.$user = user1; //TODO:change this
-      // newPost.$author = this.curUser; //gets currentUser from CurUserService
+      newPost.$user = this.currentUser; //gets currentUser from CurUserService
       newPost.$message = this.unsubmittedContent;
-      newPost.$likes = 0;
+      newPost.$likes = [];
       newPost.$image = null; //get postID from DB
 
       if(this.unsubmittedContent == ""){
@@ -68,11 +70,13 @@ export class FeedComponent implements OnInit {
       }
  
       this.unsubmittedContent = ""; //reset unsubmttedConent to nothing
-      // this.showCommentEntry = false;
-      //call addPost method, doPost sends request and returns resposne of 10 posts
-      this.populatePostList(this.posts.addPost(newPost));
+      this.showCommentEntry = false;
+      
+      //adds post through post/RecentPosts, waits to get a resp, then calls get /post for 1 most recent
+      this.posts.addPost(newPost).subscribe(resp=>{this.postsFromSerice();},err=>{console.log("Error recieving posts from createPost")});
+      
   }
-
+  
     getPostsFromService(){
       this.postsFromSerice();
       // this.testPosts();
@@ -108,15 +112,12 @@ export class FeedComponent implements OnInit {
             newPost.$user = list[index].user;
             newPost.$message = list[index].message;
             newPost.$postID = list[index].postId;
-            if(list[index].likes == null ) {
-              newPost.$likes = 0; 
-            } else {
-              newPost.$likes = list[index].likes; 
-            }
-            //Math.floor(Math.random() * 6) + 1;
+            newPost.$likes = list[index].likes;
+            // newPost.$likes = list[index].likes.length;
+            
             // newPost.$image = list[index].image;
             // newPost.$time = list[index].time;
-            // console.log(newPost.$author.username);
+            
             this.postList.push(newPost);
           }
           // console.log("Response: "+JSON.stringify(list[0]));
@@ -147,11 +148,18 @@ export class FeedComponent implements OnInit {
     }
 
     likePost(post){
-      //TODO: check whether (set) post.likedBy contains this.curUser.userID
-        //if so return and do nothing
-      
-      post.$likes = post.$likes + 1;
-      //this is a change
+    
+      for(var index = 0; index < post.$likes.length; index++){
+        if(post.$likes[0].userID == this.currentUser.$userID){
+          //play an animation here?
+          console.log("User has already liked this post");
+          alert("Already liked this post");
+          return;
+        } 
+      }
+      //if no userID is found in post.$likes
+      post.$likes.push(JSON.parse(JSON.stringify(this.currentUser)));
+      this.posts.likedPost(post).subscribe(); //update post
     }
 }
 

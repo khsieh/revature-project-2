@@ -29,13 +29,14 @@ export class User {
     }
     */
     public setAll(newU:User):void{
-        this.$userID = newU.$userID;
+		this.$userID = newU.$userID;
+		this.$username = newU.$username;
+        this.$password = newU.$password;
         this.$firstName = newU.$firstName;
         this.$lastName = newU.$lastName;
-        this.$username = newU.$username;
-        this.$password = newU.$password;
-        this.$profilePicture = newU.$profilePicture;
-        this.$email = newU.$email;
+		this.$email = newU.$email;
+		this.$profilePicture = newU.$profilePicture;
+
     }
 
     //userID
@@ -99,5 +100,7 @@ export class User {
 	public set $email(value: string) {
 		this.email = value;
 	}
-    
+ 
+	
+
 }

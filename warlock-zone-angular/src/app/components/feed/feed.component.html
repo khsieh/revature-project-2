@@ -7,7 +7,7 @@
 
       
       <div class="col-md-9">
-        <div class="row jumbotron">
+        <div class="row jumbotron" name="mainJumbo">
         <div class="col-sm-9">
         <h3 align="center">The Warlock's Message Board</h3>
         </div><!-- /col-sm-12 -->
@@ -16,7 +16,7 @@
               <button class="btn" (click)="unhidePost()">Cancel</button>
           </div>
           <ng-template #createPostBlock>
-              <button class="btn" (click)="unhidePost()">Create Post</button>
+              <button class="btn" (click)="getPostsFromService()">Refresh Post</button>
           </ng-template>
         </div>
         </div><!-- /row -->
@@ -38,7 +38,7 @@
             <div class="col-md-11">
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  <strong> *Cousin Seth* </strong>
+                  <strong> {{currentUser.$username}} </strong>
                   <span class="text-muted">commented 5 days ago</span>
                   <button class="btn" id="submitComment" type="button" (click)="createPost()">Submit</button>
                 </div>
@@ -63,7 +63,7 @@
                   <div class="panel panel-default">
                   <div class="panel-heading">
                   <strong>{{post.$user.username}}</strong> <span class="text-muted">commented 5 days ago</span>
-                  <button style="float: right" type="button" class="btn btn-default btn-sm" (click)="likePost(post)"><span class="glyphicon glyphicon-thumbs-up"></span> {{post.likes}}</button>
+                  <button style="float: right" type="button" class="btn btn-default btn-sm" (click)="likePost(post)"><span class="glyphicon glyphicon-thumbs-up"></span> {{post.likes.length}}</button>
                   </div>
                   <div class="panel-body"> {{post.$message}} </div><!-- /panel-body -->
                 </div><!-- /panel panel-default -->
