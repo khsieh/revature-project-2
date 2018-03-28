@@ -24,13 +24,13 @@ export class UpdateUserService {
             "email":newUser.$email,
             "profilePicture":newUser.$profilePicture
         }
-        const header = {
-            headers:new HttpHeaders({
-                ContentType:'application/json',
-                responseType:'text',
-                observe:'response'
-            })
-        }
-        return this.httpClient.put(this.url,requestBody,header);
+        // const header = {
+        //     headers:new HttpHeaders({
+        //         ContentType:'application/json',
+        //         responseType:'text',
+        //         observe:'response'
+        //     })
+        // }
+        return this.httpClient.put(this.url,requestBody);
     }
 }
