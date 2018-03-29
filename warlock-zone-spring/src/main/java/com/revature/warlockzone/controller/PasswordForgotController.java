@@ -52,7 +52,7 @@ public class PasswordForgotController {
         PasswordToken token = new PasswordToken();
         token.setToken(UUID.randomUUID().toString());
         token.setUser(user);
-        token.setExpiryDate(7);
+        token.setExpiryDate(50000);
         tokenDao.save(token);
       //  passwordResetEmail.setText("To reset your password, click the link below:\n" + appUrl
 		//		+ "/reset?token=" + user.getResetToken());
