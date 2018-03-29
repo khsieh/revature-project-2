@@ -37,8 +37,8 @@
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <strong> {{currentUser.$username}} </strong>
-                  <span class="text-muted">commented 5 days ago</span>
-                  <button class="btn" id="submitComment" type="button" (click)="createPost()">Submit</button>
+                  <!-- <span class="text-muted">commented on</span> -->
+                  <button class="btn" id="submitComment" type="button" (click)="createPost()" style="float:right">Submit</button>
                 </div>
                 <div class="panel-body" style="padding: 0px">  
                     <textarea class="form-control" [(ngModel)]="unsubmittedContent" rows="5" ng-model="cmtName" style="padding: 0px; border: none" placeholder="Create your message"></textarea>       
@@ -56,23 +56,23 @@
               </div><!-- /col-sm-1 -->
                   
               <div class="col-md-11">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <span ><strong> {{searchedUser.username}} </strong></span>
-                  </div>
+                <!-- <div class="panel panel-default"> -->
+                  <!-- <div class="panel-heading"> -->
+                  <h3 align="center"><strong > {{searchedUser.username}} </strong></h3>
+                  <!-- </div> -->
                   <div class="panel-body" style="padding: 0px">  
-                    <ol>
+                    <ul>
                       <li>Name: {{searchedUser.firstname}} {{searchedUser.lastname}}</li>
                       <li>Email: {{searchedUser.email}}</li>
-                    </ol>
+                    </ul>
                   </div>
-                </div><!-- /panel panel-default -->
+                <!-- </div>/panel panel-default -->
               </div><!-- /col-sm-5 -->
             </div>
           
           <!-- LIST OF COMMENTS -->
           <li *ngFor="let post of postList" style="list-style-type: none">
-            <div class="row no-gutters jumbotron">
+            <div class="row no-gutters jumbotron" [ngStyle]="{'background-position-x': post.$pos[1]+'%', 'background-position-y': post.$pos[1]+'%'}">
               <div class="col-sm-1">
                 <div class="glyphicon glyphicon-x">
                   <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
@@ -82,7 +82,7 @@
                   <div class="col-md-11">
                   <div class="panel panel-default">
                   <div class="panel-heading">
-                  <strong>{{post.$user.username}}</strong> <span class="text-muted">commented 5 days ago</span>
+                  <strong>{{post.$user.username}}</strong> <span class="text-muted">commented on </span>
                   <button style="float: right" type="button" class="btn btn-default btn-sm" (click)="likePost(post)"><span class="glyphicon glyphicon-thumbs-up"></span> {{post.likes.length}}</button>
                   </div>
                   <div class="panel-body"> {{post.$message}} </div><!-- /panel-body -->

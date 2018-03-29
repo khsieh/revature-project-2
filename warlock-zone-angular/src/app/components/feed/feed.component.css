@@ -12,11 +12,28 @@
 .glyphicon{
     height: 100%;
 }
-
+.jumbotron{
+    background-color: #9775AA;
+}
+.panel{
+    background-color: #D3BFDE;
+}
+.panel-heading{
+    background-color: #D3BFDE;
+}
+.form-control{
+    background-color: #D3BFDE;
+}
 .row.no-gutters.jumbotron {
+
     padding-top: 2rem;
     padding-bottom: 1.5 rem;
     padding-left: 2rem;
     padding-right: 2rem;
     
+    background-image: url('../../../assets/4375-dark-purple-bokeh-lights-background.jpg');
+    background-position-x: 25%;
+    background-position-y: 50%;
+
+    opacity: 1;
 }
