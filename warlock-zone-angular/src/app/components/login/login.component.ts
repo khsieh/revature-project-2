@@ -73,4 +73,8 @@ export class LoginComponent implements OnInit {
         console.log("Registering user");
     }
 
+    forgotPW(){
+        this.router.navigate(["forgot-password"]);
+    }
+
 }
