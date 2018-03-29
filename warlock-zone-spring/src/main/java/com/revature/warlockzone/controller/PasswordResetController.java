@@ -3,6 +3,7 @@ package com.revature.warlockzone.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,6 +28,7 @@ public class PasswordResetController {
 	UserService userService;
 	@Autowired
 	PasswordTokenDAO passTokenDao;
+	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
   
 	@SuppressWarnings("rawtypes")
@@ -48,7 +50,9 @@ public class PasswordResetController {
         } else {
         	User user = token.getUser();
             //String updatedPassword = password;
-            user.setPassword(password);
+    		String hashedPassword = passwordEncoder.encode(user.getPassword());
+
+    		user.setPassword(hashedPassword);
             userService.updatePassword(user);
             passTokenDao.delete(token);
             return new ResponseEntity(HttpStatus.ACCEPTED);

@@ -61,7 +61,7 @@ public class PasswordForgotController {
         mail.setTo(user.getEmail());
         mail.setSubject("Password reset request");
        
-        String url = "To reset your password, click the link below: \n" + "http://localhost:8080/reset-password?token=" + token.getToken();
+        String url = "To reset your password, click the link below: \n" + "http://13.58.228.189/reset-password?token=" + token.getToken();
      
         emailService.sendEmail(mail,url);
 

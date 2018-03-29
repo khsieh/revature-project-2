@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,15 +43,20 @@ public class LoginController {
 	}
 	
 	//logout servlet
-	@RequestMapping(method = RequestMethod.POST, value = "/logout")
-	public ResponseEntity logout(@RequestParam("token") String tokens){
+	@SuppressWarnings("rawtypes")
+	@RequestMapping(method = RequestMethod.POST , value = "/exit")
+	public ResponseEntity loggingout(@RequestParam("token") String token){
 		List<User> user = userService.getAllUsers();
 		for(int i = 0; i < user.size(); i++) {
-			if(user.get(i).getToken().equals(tokens)) {
+			if(user.get(i).getToken().equals(token)) {
 				user.get(i).setToken(null);
+				userService.updateUser(user.get(i));
+				System.out.println(user.get(i).getToken());
+				
 			}
 		}
         return new ResponseEntity(HttpStatus.ACCEPTED);
 	}
+
 	
 }
