@@ -19,7 +19,9 @@ public class LoginService {
 
 	
 	public User authenticate(String username, String password) {
-		
+		if (username == null || password == null) {
+			return null;
+		}
 		user = userService.getUserByUsername(username);
 		
 		//	user.setPassword(hashedPassword);

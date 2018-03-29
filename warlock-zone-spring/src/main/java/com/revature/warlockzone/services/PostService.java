@@ -62,7 +62,7 @@ public class PostService {
 	}
 	
 	public List<Post> getPostsByUser(User user){
-		return postDao.findAllByUser(user);	
+		return postDao.findAllByUser(userService.getUser(user.getUserID()));	
 	}
 	
 }

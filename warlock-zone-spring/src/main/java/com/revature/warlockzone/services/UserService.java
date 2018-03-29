@@ -73,7 +73,7 @@ public class UserService {
         userDao.save(user);
     }
 
-    public void deleteToken(int id) {
+    public void deleteToken(User user) {
         userDao.save(user);
     }
 }

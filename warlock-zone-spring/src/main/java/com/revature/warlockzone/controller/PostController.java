@@ -29,6 +29,9 @@ public class PostController {
 	@Autowired
 	private UserService userService;
 	public boolean tokenCheck(String token, Post post) {
+		if(token ==null || post == null) {
+			return false;
+		}
         User user = userService.getUser(post.getUser().getUserID());
         if(token.equals(user.getToken())){
             return true;
