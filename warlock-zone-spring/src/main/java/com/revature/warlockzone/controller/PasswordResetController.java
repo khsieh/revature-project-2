@@ -33,7 +33,7 @@ public class PasswordResetController {
 	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @GetMapping
-    public ResponseEntity displayResetPasswordPage(@RequestParam(required = false) String token) {d
+    public ResponseEntity displayResetPasswordPage(@RequestParam(required = false) String token) {
         return new ResponseEntity(HttpStatus.ACCEPTED);
     }
 

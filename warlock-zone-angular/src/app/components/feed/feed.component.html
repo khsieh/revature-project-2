@@ -78,7 +78,7 @@
             <div class="row no-gutters jumbotron" [ngStyle]="{'background-position-x': post.$pos[1]+'%', 'background-position-y': post.$pos[1]+'%'}">
               <div class="col-sm-1">
                 <div class="glyphicon glyphicon-x">
-                  <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+                  <img class="img-responsive user-photo" src={{post.$user.$profilePicture}}>
                   </div><!-- /thumbnail -->
                   </div><!-- /col-sm-1 -->
                   
@@ -88,7 +88,13 @@
                   <strong>{{post.$user.username}}</strong> <span class="text-muted">commented on </span>
                   <button style="float: right" type="button" class="btn btn-default btn-sm" (click)="likePost(post)"><span class="glyphicon glyphicon-thumbs-up"></span> {{post.likes.length}}</button>
                   </div>
-                  <div class="panel-body"> {{post.$message}} </div><!-- /panel-body -->
+                  <div *ngIf="post.$image == null; else showImage">
+                    <div class="panel-body"> {{post.$message}} </div><!-- /panel-body -->
+                  </div>
+                  <ng-template #showImage>
+                    <img src={{post.$image}}/>  
+                    <div class="panel-body"> {{post.$message}} </div><!-- /panel-body -->
+                  </ng-template>
                 </div><!-- /panel panel-default -->
               </div><!-- /col-sm-5 -->
             </div>
