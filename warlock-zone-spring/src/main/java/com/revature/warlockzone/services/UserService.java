@@ -23,7 +23,6 @@ public User authenticate(String username, String password) {
 		user = getUserByUsername(username);
 		
 		if(user.getPassword().equals(password)) {
-			user.setPassword(null);
 			return user;
 		}
 		else {
@@ -35,7 +34,7 @@ public User authenticate(String username, String password) {
 	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 	public List<User> getAllUsers(){
 		//probably need to change this
-		return secureUsers(userDao.findAll());	
+		return userDao.findAll();	
 	}
 	
 	public User getUser(int id) {
@@ -69,15 +68,6 @@ public User authenticate(String username, String password) {
 		userDao.save(user);
 	}
 	
-	
-	private List<User> secureUsers(List<User> users) {
-		
-		for(int i = 0; i < users.size(); i++) {
-			users.get(i).setPassword("null");
-		}
-		
-		return users;
-	}
 	public void updateToken(User user) {
 		userDao.save(user);
 	}
