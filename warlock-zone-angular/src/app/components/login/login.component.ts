@@ -54,8 +54,8 @@ export class LoginComponent implements OnInit {
                     newUser.$username = respJSON["username"];
                     newUser.$password = respJSON["password"];
                     this.currentUser.setUser(newUser);
-                    // this.authService.setToken(respJSON["token"]);
-                    this.authService.setToken("true");
+                    this.authService.setToken(respJSON["token"]);
+                    // this.authService.setToken("true");
                 }
                 // redirect them to app-home
                 this.router.navigate(["home"]);

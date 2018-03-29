@@ -24,7 +24,7 @@ export class AuthTokenService {
 
     //get rid of this later
     checkToken():boolean{
-        // this.httpClient.post()
+
         // TODO:change this to httpClient post to check with DB?
         if(this.token.getValue() != null)
             return true;

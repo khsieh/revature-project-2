@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthTokenService } from '../../services/cache/authToken/auth-token.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(){}
+    //   private authServ:AuthTokenService) { }
 
   ngOnInit() {
+    //   console.log(this.authServ.getToken());
   }
   
 }
