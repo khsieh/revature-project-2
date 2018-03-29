@@ -67,7 +67,13 @@ export class EditProfileComponent implements OnInit {
     updateUser(): void {
         console.log("Updating user information!");
 
-        this.editUser.$password = this.new_password1;
+        if(this.new_password1 != null){
+            this.editUser.$password = this.new_password1;
+        }
+        else{
+            this.editUser.$password = this.cur_password;
+        }   
+        console.log("NEW PASSWORD WILL BE: " + this.editUser.$password)
         //set image to b64
         this.editUser.image = this.new_img;
         console.log(this.editUser);
