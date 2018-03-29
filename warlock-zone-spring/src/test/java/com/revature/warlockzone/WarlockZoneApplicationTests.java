@@ -151,9 +151,9 @@ public class WarlockZoneApplicationTests {
     }
     public void uploadImage(User testUser, Post testPost) {
     	S3Service.createFolder("testUser", testUser.getUserID());
-        testUser.setProfilePicture(S3Service.uploadImage(testUser, null, testUser.getProfilePicture()));
+        testUser.setProfilePicture(S3Service.uploadImage(testUser, null));
         S3Service.createFolder("testPost", testPost.getPostId());
-        testPost.setImage(S3Service.uploadImage(testUser, testPost,testPost.getImage()));
+        testPost.setImage(S3Service.uploadImage(testUser, testPost));
     }
     public void deleteImage(User testUser, Post testPost) {
     	S3Service.deleteImage("testUser", testUser.getUserID());
