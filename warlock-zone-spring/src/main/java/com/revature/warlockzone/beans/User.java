@@ -108,7 +108,7 @@ public class User {
     public String toString() {
         return "User [userID=" + userID + ", username=" + username + ", password=" + password + ", firstName="
                 + firstName + ", lastName=" + lastName + ", email=" + email + ", profilePicture="
-                + (profilePicture != null) ? profilePicture.length():""
+                + ((profilePicture != null) ? profilePicture.length():"")
                 + "]";
     }
 
