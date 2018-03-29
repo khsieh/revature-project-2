@@ -68,40 +68,40 @@ public class PostController {
 	
 	@RequestMapping("/post")
 	public List<Post> getPosts( @RequestParam("token") String tokens){
-		if(tokenCheck(tokens,post)) {
+		// if(tokenCheck(tokens)) {
 			log.info("getPosts");
 			return postService.getAllPosts();
-		}
-		return null;
+		// }
+		// return null;
 		
 	}
 	
 	
 	@RequestMapping("/post/{id}")
 	public Post getPost(@PathVariable int id,  @RequestParam("token") String tokens){
-		if(tokenCheck(tokens,post)) {
+		// if(tokenCheck(tokens,post)) {
 			log.info("getPost: "+ id);		
 			return postService.getPostById(id);
-		}
-		return null;
+		// }
+		// return null;
 	}
 	
 	@RequestMapping("/RecentPosts")
 	public List<Post> getRecentPosts( @RequestParam("token") String tokens){
-		if(tokenCheck(tokens,post)) {
+		// if(tokenCheck(tokens,post)) {
 			log.info("getRecentPosts");
 			return postService.getLastTenPosts();
-		}
-		return null;
+		// }
+		// return null;
 	}
 	
 	@RequestMapping("/RecentPosts/{id}")
 	public List<Post> getRecentPosts(@PathVariable int id, @RequestParam("token") String tokens){
-		if(tokenCheck(tokens,post)) {
+		// if(tokenCheck(tokens,post)) {
 			log.info("getRecentPosts: "+ id);
 			return postService.getNextTenPosts(id);
-		}
-		return null;
+		// }
+		// return null;
 	}
 	
 	@GetMapping("/postCount")
