@@ -11,7 +11,8 @@ import com.revature.warlockzone.dao.PostDAO;
 
 @Service
 public class PostService {
-
+	@Autowired
+	UserService userService;
 	@Autowired
 	private PostDAO postDao;
 	@Autowired
@@ -36,6 +37,15 @@ public class PostService {
 	}
 	
 	public void updatePost(Post post) {
+		String image = post.getImage();
+		if(image!=null && !image.isEmpty()) {
+			if(image.length() > S3Service.baseUrl.length()) {
+				if(!image.substring(S3Service.baseUrl.length()).equals(S3Service.baseUrl)){
+					User user = userService.getUser(post.getUser().getUserID());
+					post.setImage(S3Service.uploadImage(user, post));
+				}
+			}
+		}
 		postDao.save(post);
 	}
 	

@@ -30,6 +30,7 @@ public class S3Service {
 								            .withCredentials(new AWSStaticCredentialsProvider(cred))
 								            .build();
 	private static final String bucket = "warlock-zone";
+	public static final String baseUrl = "http://" + S3Service.bucket + ".s3.us-east-2.amazonaws.com/";
 	
 	/*
 	 * Create methods
@@ -46,14 +47,19 @@ public class S3Service {
     	S3Service.s3.putObject( new PutObjectRequest(S3Service.bucket,
     				type + "/", emptyContent, metadata));
     }
-    public static String uploadImage(User user, Post post, String base64) {
+    public static String uploadImage(User user, Post post) {
     	String url = "";
+    	String base64="";
     	if(post != null) {
     		url = "post/" + (user.getUsername()+ post.getTimeStamp().toString()).hashCode();
+    		base64=post.getImage();
     	}else {
     		url = "user/" + user.getUsername();
+    		base64=user.getProfilePicture();
     	}
     	byte[] decodedByte = Base64.getDecoder().decode(base64.split(",")[1]);
+    	String[] base64Head = base64.split(",")[0].split("/");
+    	url += (base64Head.length>0) ? base64Head[1] : "";
     	// create meta-data for your folder and set content-length to 0
     	ObjectMetadata metadata = new ObjectMetadata();
     	metadata.setContentLength(decodedByte.length);
@@ -63,7 +69,7 @@ public class S3Service {
     	// send request to S3 to create folder
     	S3Service.s3.putObject( new PutObjectRequest(S3Service.bucket,
     				url, imageContent, metadata));
-    	return "http://" + S3Service.bucket + ".s3.us-east-2.amazonaws.com/"  +url;
+    	return S3Service.baseUrl  +url;
     }
     
     /*
