@@ -84,7 +84,6 @@ export class FeedComponent implements OnInit {
 
     getPostsFromService() {
         this.postsFromSerice();
-        // this.testPosts();
     }
 
     postsFromSerice() {
