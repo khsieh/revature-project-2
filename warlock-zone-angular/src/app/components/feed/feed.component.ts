@@ -33,9 +33,9 @@ export class FeedComponent implements OnInit {
         // this.showCommentEntry = showCommentary;
         this.unsubmittedContent = "";
         this.currentUser;
-
-        // Call service to get Posts from DB
         this.getPostsFromService();
+        // Call service to get Posts from DB
+        
 
         this.toggleService.curStateAsObserable.subscribe(
             resp => {
@@ -133,23 +133,6 @@ export class FeedComponent implements OnInit {
                 console.log("error: feed componenet: response error");
             }
         );
-    }
-
-    testPosts() {
-        this.posts.getTestPosts().subscribe(
-            resp => {
-                let list = JSON.parse(resp.body);
-                // console.log(list);
-                //set maxposts to the smaller unit: maxposts or number of posts returned
-                let localMaxPosts = (this.maxposts > list.length) ? list.length : this.maxposts;
-                for (var index = 0; index < localMaxPosts; index++) {
-                    // console.log(index);
-                }
-            },
-            err => {
-                // console.log("error")
-            }
-        )
     }
 
     likePost(post) {
