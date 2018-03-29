@@ -56,7 +56,20 @@ export class FeedComponent implements OnInit {
     this.showCommentEntry = !this.showCommentEntry;
   }
 
+  searchUsers(username: String){
+    //take in string and ping DB to see if it exists
+
+    //ping DB again with user to get posts
+    //display posts
+  }
+
   createPost(){
+      //stop myself from doing a null user
+      if(this.currentUser.$username == "" || this.currentUser.$username == null){
+        alert("STOP EVERYTHING: You don't have a username and seth doesn't like it when you make a post without a user name.")
+        this.showCommentEntry = false;
+        return;
+      }
 
       let newPost = new Post();
       newPost.$user = this.currentUser; //gets currentUser from CurUserService
@@ -90,7 +103,6 @@ export class FeedComponent implements OnInit {
 
       obs.subscribe(
         resp=>{
-          // console.log(resp);
           let list;
           try{
             list = JSON.parse(resp.body);
@@ -120,31 +132,12 @@ export class FeedComponent implements OnInit {
             
             this.postList.push(newPost);
           }
-          // console.log("Response: "+JSON.stringify(list[0]));
-          // console.log("userID: "+list[0].user.userID);
         },
         err=>{
           console.error;
           console.log("error: feed componenet: response error");
         }
       );
-    }
-
-    testPosts(){
-      this.posts.getTestPosts().subscribe(
-        resp=>{ 
-          let list = JSON.parse(resp.body);
-          // console.log(list);
-          //set maxposts to the smaller unit: maxposts or number of posts returned
-          let localMaxPosts = (this.maxposts > list.length) ? list.length : this.maxposts;
-          for(var index=0; index<localMaxPosts;index++){
-            // console.log(index);
-          }
-        },
-        err=>{
-          // console.log("error")
-        }
-      )
     }
 
     likePost(post){

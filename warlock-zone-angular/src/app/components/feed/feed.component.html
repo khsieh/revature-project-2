@@ -12,13 +12,15 @@
         <h3 align="center">The Warlock's Message Board</h3>
         </div><!-- /col-sm-12 -->
         <div class="col-sm-3">
-          <div *ngIf="showCommentEntry; else createPostBlock">
+          <!-- <div *ngIf="showCommentEntry; else createPostBlock">
               <button class="btn" (click)="unhidePost()">Cancel</button>
-          </div>
-          <ng-template #createPostBlock>
+          </div> -->
+          <!-- <ng-template #createPostBlock> -->
               <button class="btn" (click)="getPostsFromService()">Refresh Post</button>
-          </ng-template>
+          <!-- </ng-template> -->
         </div>
+        <input style="float: center" class="searchInput" placeholder="Search for users"><span class="glyphicon glyphicon-search
+        "></span>
         </div><!-- /row -->
 
         
@@ -95,3 +97,4 @@
       </div>
   <!-- </div>
 </div> /container -->
+
