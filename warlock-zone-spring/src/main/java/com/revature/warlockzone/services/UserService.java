@@ -76,5 +76,4 @@ public class UserService {
     public void deleteToken(int id) {
         userDao.save(user);
     }
-
 }
