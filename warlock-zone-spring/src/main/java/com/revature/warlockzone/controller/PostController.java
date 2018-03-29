@@ -59,11 +59,10 @@ public class PostController {
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/postByUser")
 	public List<Post> getUserPosts(@RequestBody User user,  @RequestParam("token") String tokens){
-		if(tokenCheck(tokens,post)) {
+		// if(tokenCheck(tokens)) {
 			return postService.getPostsByUser(user);
-
-		}
-		return null;
+		// }
+		// return null;
 	}
 	
 	@RequestMapping("/post")
@@ -120,10 +119,10 @@ public class PostController {
 	
 	@RequestMapping(method = RequestMethod.DELETE, value = "/post/{id}" )
 	public void deletePost(@PathVariable int id,  @RequestParam("token") String tokens) {
-		if(tokenCheck(tokens,post)) {
+		// if(tokenCheck(tokens,post)) {
 			log.warn("deletePost: " + id);
 			postService.deletePost(id);
-		}
+		// }
 		
 	}
 	
