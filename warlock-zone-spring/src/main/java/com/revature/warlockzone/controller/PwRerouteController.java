@@ -25,7 +25,7 @@ import com.revature.warlockzone.services.UserService;
 @CrossOrigin
 public class PwRerouteController {
 
-    @RequestMapping(value = "/reset-password", method = RequestMethod.GET)
+    @GetMapping("/reset-password")
     public String displayResetPasswordPage(@RequestParam(required = false) String token) {
         return "index";
     }
