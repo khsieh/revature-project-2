@@ -35,6 +35,7 @@ import { ValidateService } from './services/validate/validate.service';
 import { AlertService } from './services/alert/alert.service';
 import { PwEmailComponent } from './components/pw-email/pw-email.component';
 import { PwResetComponent } from './components/pw-reset/pw-reset.component';
+import { ResetPwService } from './services/reset-pw/reset-pw.service';
 
 
 
@@ -78,7 +79,8 @@ import { PwResetComponent } from './components/pw-reset/pw-reset.component';
     RegisterService,
     UpdateUserService,
     ValidateService,
-    AlertService
+    AlertService,
+    ResetPwService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ResetPwService } from '../../services/reset-pw/reset-pw.service';
 
 @Component({
     selector: 'app-pw-email',
@@ -8,12 +9,13 @@ import { Component, OnInit } from '@angular/core';
 export class PwEmailComponent implements OnInit {
 
     reset_email: string
-    constructor() { }
+    constructor(private emailRService:ResetPwService) { }
 
     ngOnInit() {
     }
     
     sendEmail(){
+        this.emailRService.requestEmail(this.reset_email);
         console.log("Sending email!");
     }
 }

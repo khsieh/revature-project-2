@@ -17,7 +17,8 @@ export class EditProfileComponent implements OnInit {
   editUser: User = new User();
   new_password1: string;
   new_password2: string;
-  new_img;
+  cur_password:string;
+  new_img; //b64
 
   constructor(
       public activeModal: NgbActiveModal,
@@ -40,7 +41,7 @@ export class EditProfileComponent implements OnInit {
   }
 
   validateUser(){
-      if(this.validateService.check(this.editUser.$password)){
+      if(this.validateService.check(this.cur_password)){
         if(this.new_password1 === this.new_password2){
             this.updateUser();
             this.activeModal.close('Close');
@@ -58,8 +59,10 @@ export class EditProfileComponent implements OnInit {
 
   updateUser():void{
     console.log("Updating user information!");
-    // console.log(this.editUser);
-    //TODO need a way to check pw only? or should I just do /username
+
+    this.editUser.$password = this.new_password1;
+    //set image to b64
+
     this.updateService.update(this.editUser).subscribe(
         resp=>{
             console.log("update user successfully!");

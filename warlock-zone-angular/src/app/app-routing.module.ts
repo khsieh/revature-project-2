@@ -8,6 +8,7 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 import { FeedComponent } from './components/feed/feed.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthGuard } from "./services/auth-guard/auth.guard";
+import { PwResetComponent } from './components/pw-reset/pw-reset.component';
 
 const routes: Routes = [
     {path:'login',component:LoginComponent},
@@ -15,6 +16,7 @@ const routes: Routes = [
     {path:'home',component:HomeComponent,canActivate:[AuthGuard]},
     {path:'register', component:RegisterComponent},
     {path:'editProfile',component:EditProfileComponent,canActivate:[AuthGuard]},
+    {path:'password-reset',component:PwResetComponent},
     {path:'**', component:ErrorPageComponent} //change this to a 404 error page
 ];
 
