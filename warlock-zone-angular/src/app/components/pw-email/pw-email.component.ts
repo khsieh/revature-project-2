@@ -15,7 +15,14 @@ export class PwEmailComponent implements OnInit {
     }
     
     sendEmail(){
-        this.emailRService.requestEmail(this.reset_email);
+        this.emailRService.requestEmail(this.reset_email).subscribe(
+            resp=>{
+                console.log(resp);
+            },
+            err=>{
+                console.log(err);
+            }
+        );
         console.log("Sending email!");
     }
 }

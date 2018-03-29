@@ -5,8 +5,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 export class ResetPwService {
 
     private urlEmail:string  = "http://ec2-13-58-228-189.us-east-2.compute.amazonaws.com/forgot-password";
-    private urlRPW:string  = "http://ec2-13-58-228-189.us-east-2.compute.amazonaws.com/reset-password";
-
+    private urlRPW:string  = "http://ec2-13-58-228-189.us-east-2.compute.amazonaws.com/reset-password"
     constructor(private httpClient: HttpClient) { }
 
     requestEmail(email:string) {
@@ -18,7 +17,7 @@ export class ResetPwService {
                 observe:'response'
             })
         }
-
+        console.log(email);
         return this.httpClient.post(this.urlEmail,requestBody,header);
     }
 
@@ -26,12 +25,11 @@ export class ResetPwService {
         const requestBody = newPassword;
         const header = {
             headers:new HttpHeaders({
-                ContentType:'text',
-                responseType:'text',
-                observe:'response',
+                ContentType:'text'
             })
         }
-        this.urlRPW += "?token=" + token;
+        this.urlRPW += "?token=";
+        this.urlRPW += token;
         return this.httpClient.post(this.urlRPW,requestBody,header);
     }
 
