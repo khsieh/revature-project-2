@@ -20,7 +20,7 @@ export class FeedComponent implements OnInit {
     userSearch: string;
     unsubmittedContent: string;
     showUserInfo: boolean;
-    searchedUser: JSON;
+    searchedUser: any;
 
 
     constructor(
@@ -39,8 +39,7 @@ export class FeedComponent implements OnInit {
         this.showUserInfo = false;
         this.getCurrentUser();
 
-        let json = {"email":"", "lastname":"", "firstname":"", "username":""};
-        this.searchedUser = JSON.parse(JSON.stringify(json));
+        this.searchedUser = {"email":"", "lastname":"", "firstname":"", "username":""};
 
         this.toggleService.curStateAsObserable.subscribe(
             resp => {
@@ -167,10 +166,10 @@ export class FeedComponent implements OnInit {
 
     displayerUserInformation(userJson){
       // console.log(userJson);
-      this.searchedUser['username'] = userJson.username;
-      this.searchedUser['firstname'] = userJson.firstName;
-      this.searchedUser['lastname'] = userJson.lastName;
-      this.searchedUser['email'] = userJson.email;
+      this.searchedUser.username = userJson.username;
+      this.searchedUser.firstname = userJson.firstName;
+      this.searchedUser.lastname = userJson.lastName;
+      this.searchedUser.email = userJson.email;
       // console.log(this.searchedUser)
       this.showUserInfo = true;
     }
