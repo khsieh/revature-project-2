@@ -1,5 +1,6 @@
 package com.revature.warlockzone.controller;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +32,12 @@ public class PasswordResetController {
 	PasswordTokenDAO passTokenDao;
 	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-  
+    @GetMapping
+    public ResponseEntity displayResetPasswordPage(@RequestParam(required = false) String token) {d
+        return new ResponseEntity(HttpStatus.ACCEPTED);
+    }
+
+
 	@SuppressWarnings("rawtypes")
 	//    @PostMapping
     @RequestMapping(value = "/reset-password", method = RequestMethod.POST)
@@ -60,4 +66,6 @@ public class PasswordResetController {
 
         }
     }
+
+
 }

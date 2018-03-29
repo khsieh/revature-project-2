@@ -71,10 +71,10 @@ export class EditProfileComponent implements OnInit {
         else{
             this.editUser.$password = this.cur_password;
         }   
-        console.log("NEW PASSWORD WILL BE: " + this.editUser.$password)
+        // console.log("NEW PASSWORD WILL BE: " + this.editUser.$password)
         //set image to b64
         this.editUser.profilePicture = this.new_img;
-        console.log(this.editUser);
+        // console.log(this.editUser);
         this.updateService.update(this.editUser).subscribe(
             resp => {
                 console.log("update user successfully!");

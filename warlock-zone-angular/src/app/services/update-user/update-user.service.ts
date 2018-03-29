@@ -22,7 +22,8 @@ export class UpdateUserService {
             "firstName":newUser.$firstName,
             "lastName":newUser.$lastName,
             "email":newUser.$email,
-            "profilePicture":newUser.$profilePicture
+            "profilePicture":newUser.$profilePicture,
+            "token":this.authService.getToken()
         }
         const header = {
             headers:new HttpHeaders({
