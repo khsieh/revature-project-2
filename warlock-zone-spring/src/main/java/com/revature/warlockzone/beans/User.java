@@ -24,6 +24,7 @@ public class User {
 	private int userID;
 	@Column(unique = true)
 	private String username;
+	@Column(nullable = false)
 	private String password;
 	private String firstName;
 	private String lastName;
