@@ -14,7 +14,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { FeedComponent } from './components/feed/feed.component';
-import { PostComponent } from './components/post/post.component';
 import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AlertComponent } from './components/alert/alert.component';
@@ -46,7 +45,6 @@ import { ResetPwService } from './services/reset-pw/reset-pw.service';
     LoginComponent,
     ProfileComponent,
     FeedComponent,
-    PostComponent,
     HomeComponent,
     ErrorPageComponent,
     EditProfileComponent,
