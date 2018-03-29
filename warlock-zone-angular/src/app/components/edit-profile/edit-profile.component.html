@@ -37,11 +37,13 @@
                 <label class="font-weight-bold" for="new_password2">Confirm New Password</label>
                 <input [(ngModel)]="new_password2" required name="new_password2" type="password" class="form-control" id="new_password2" placeholder="Confirm new Passowrd">
             </div>
+            <!-- profile picture -->
             <div class="form-group">
                 <label class="font-weight-bold" for="new_img">Profile Image</label>
-                <input [(ngModel)]="new_img" required name="new_img" type="file" accept="image/*" class="form-control" id="new_img">
+                <input (change)="this.onFileChange($event)" required name="new_img" type="file" accept="image/*" class="form-control" id="new_img">
+                <!-- [(ngModel)]="new_img" -->
             </div>
-
+            
         </form>
     </div>
 </div>

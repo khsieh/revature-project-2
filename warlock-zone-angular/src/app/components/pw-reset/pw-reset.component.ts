@@ -24,7 +24,15 @@ export class PwResetComponent implements OnInit {
 
     sendNewPW(){
         if(this.new_password1 === this.new_password2){
-            this.resetService.resetPW(this.new_password1,this.token);
+            console.log("password matched, sending new pw now!");
+            this.resetService.resetPW(this.new_password1,this.token).subscribe(
+                resp=>{ 
+                    console.log(resp);
+                },
+                err=>{
+                    console.log(err);
+                }
+            );
         }
         else{
             console.log("password does not match");
