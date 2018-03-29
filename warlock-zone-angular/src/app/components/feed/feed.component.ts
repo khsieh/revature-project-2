@@ -17,9 +17,10 @@ export class FeedComponent implements OnInit {
     maxposts: number;
     currentUser: User;
     showCommentEntry: boolean;
-
+    userSearch: string;
     unsubmittedContent: string;
-
+    showUserInfo: boolean;
+    searchedUser: JSON;
 
 
     constructor(
@@ -32,10 +33,14 @@ export class FeedComponent implements OnInit {
         this.maxposts = 10;
         // this.showCommentEntry = showCommentary;
         this.unsubmittedContent = "";
+        this.userSearch = "";
         this.currentUser;
         this.getPostsFromService();
-        // Call service to get Posts from DB
-        
+        this.showUserInfo = false;
+        this.getCurrentUser();
+
+        let json = {"email":"", "lastname":"", "firstname":"", "username":""};
+        this.searchedUser = JSON.parse(JSON.stringify(json));
 
         this.toggleService.curStateAsObserable.subscribe(
             resp => {
@@ -47,7 +52,6 @@ export class FeedComponent implements OnInit {
             }
         );
 
-        this.getCurrentUser();
     }
 
     getCurrentUser() {
@@ -61,7 +65,7 @@ export class FeedComponent implements OnInit {
     }
 
     createPost() {
-
+        this.showUserInfo = false;
         let newPost = new Post();
         newPost.$user = this.currentUser; //gets currentUser from CurUserService
         newPost.$message = this.unsubmittedContent;
@@ -84,6 +88,7 @@ export class FeedComponent implements OnInit {
 
     getPostsFromService() {
         this.postsFromSerice();
+        this.showUserInfo = false;
     }
 
     postsFromSerice() {
@@ -111,7 +116,7 @@ export class FeedComponent implements OnInit {
                 this.postList = [];
 
                 for (var index = 0; index < list.length; index++) {
-                    console.log(list[index]);
+                    // console.log(list[index]);
                     let newPost = new Post();
                     newPost.$user = list[index].user;
                     newPost.$message = list[index].message;
@@ -147,6 +152,29 @@ export class FeedComponent implements OnInit {
         //if no userID is found in post.$likes
         post.$likes.push(JSON.parse(JSON.stringify(this.currentUser)));
         this.posts.likedPost(post).subscribe(); //update post
+    }
+
+    searchForUser(){
+      let newPosts;
+      let user = this.posts.getUser(this.userSearch).subscribe(
+        resp=>{
+          this.displayerUserInformation(JSON.parse(JSON.stringify(resp)));
+          newPosts = this.posts.getPostsFromUser(JSON.parse(JSON.stringify(resp)));
+          this.populatePostList(newPosts);
+        },
+        err=>{ console.log(err)}
+      );
+      this.userSearch = "";
+    }
+
+    displayerUserInformation(userJson){
+      // console.log(userJson);
+      this.searchedUser['username'] = userJson.username;
+      this.searchedUser['firstname'] = userJson.firstName;
+      this.searchedUser['lastname'] = userJson.lastName;
+      this.searchedUser['email'] = userJson.email;
+      // console.log(this.searchedUser)
+      this.showUserInfo = true;
     }
 }
 

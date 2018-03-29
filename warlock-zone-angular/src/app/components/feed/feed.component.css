@@ -9,7 +9,9 @@
     background-color: #582A72;
 }
 
-
+.glyphicon{
+    height: 100%;
+}
 
 .row.no-gutters.jumbotron {
     padding-top: 2rem;

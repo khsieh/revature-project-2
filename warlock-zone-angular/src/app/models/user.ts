@@ -101,6 +101,4 @@ export class User {
 		this.email = value;
 	}
  
-	
-
 }

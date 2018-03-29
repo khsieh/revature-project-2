@@ -12,16 +12,12 @@
         <h3 align="center">The Warlock's Message Board</h3>
         </div><!-- /col-sm-12 -->
         <div class="col-sm-3">
-          <!-- <div *ngIf="showCommentEntry; else createPostBlock">
-              <button class="btn" (click)="unhidePost()">Cancel</button>
-          </div> -->
-          <!-- <ng-template #createPostBlock> -->
-              <button class="btn" (click)="getPostsFromService()">Refresh Post</button>
-          <!-- </ng-template> -->
+          <button class="btn" (click)="getPostsFromService()">Refresh Post</button>
         </div>
-        <input style="float: center" class="searchInput" placeholder="Search for users"><span class="glyphicon glyphicon-search
-        "></span>
-        </div><!-- /row -->
+        <div style="float: center">
+        <input class="searchInput" placeholder="Search for users" [(ngModel)]="userSearch"><button class="glyphicon glyphicon-search" type="button" name="searchIcon" (click)="searchForUser()"></button>
+        </div>
+      </div><!-- /row -->
 
         
 
@@ -51,7 +47,29 @@
             </div><!-- /col-sm-5 -->
           </div>
           <!-- END HIDDEN COMMENT -->
-
+          
+          <div class="row no-gutters jumbotron" [ngStyle]="{'display': showUserInfo ? 'block':'none'}"> 
+              <div class="col-sm-1">
+                <div class="glyphicon glyphicon-x">
+                  <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+                </div><!-- /thumbnail -->
+              </div><!-- /col-sm-1 -->
+                  
+              <div class="col-md-11">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <span ><strong> {{searchedUser.username}} </strong></span>
+                  </div>
+                  <div class="panel-body" style="padding: 0px">  
+                    <ol>
+                      <li>Name: {{searchedUser.firstname}} {{searchedUser.lastname}}</li>
+                      <li>Email: {{searchedUser.email}}</li>
+                    </ol>
+                  </div>
+                </div><!-- /panel panel-default -->
+              </div><!-- /col-sm-5 -->
+            </div>
+          
           <!-- LIST OF COMMENTS -->
           <li *ngFor="let post of postList" style="list-style-type: none">
             <div class="row no-gutters jumbotron">
