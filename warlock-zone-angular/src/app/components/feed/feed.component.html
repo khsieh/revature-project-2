@@ -94,21 +94,17 @@
         <!-- END LIST OF COMMENTS -->
         <!-- End of comment block -->
         <div align="center" style="padding-bottom: 25px">
-          <div class="col-md-1">
+          <div class="col-md-1" (click)="getPostsByID(0)">
             <p>Most Recent</p>
-            <a href="" style="padding-right: 10px"><<</a>
+            <a style="padding-right: 10px"><<</a>
           </div>
-          <div class="col-md-1">
+          <div class="col-md-1" (click)="getPostsByID(-1)">
               <p>Next 10</p>
-            <a href="" style="padding-right: 10px"><</a>
+            <a style="padding-right: 10px"><</a>
           </div>
-          <div class="col-md-1">
+          <div class="col-md-1" (click)="getPostsByID(1)">
             <p>Previous 10</p>
-            <a href="" style="padding-right: 10px">></a>
-          </div>
-          <div class="col-md-1">
-            <p>Oldest Posts</p>
-            <a href="" style="padding-right: 10px">>></a>
+            <a style="padding-right: 10px">></a>
           </div>
           
         </div>

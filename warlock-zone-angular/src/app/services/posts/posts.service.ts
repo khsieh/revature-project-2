@@ -91,4 +91,19 @@ export class PostsService implements OnInit {
       return this.httpClient.post(tUrl,user,header)
       
     }
+
+    getPostsByID(postId:number){
+      let tUrl:string = this.url+"RecentPosts/"+postId;
+      tUrl = this.authService.appendToken(tUrl);
+
+      const header = {
+        headers: new HttpHeaders({
+            ContentType: 'application/json',
+            responseType: 'text',
+            // observe: 'response'
+        })
+      }
+      console.log("url: "+ tUrl)
+      return this.httpClient.get(tUrl);
+    }
 }
