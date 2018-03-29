@@ -57,9 +57,11 @@ public class S3Service {
     		url = "user/" + user.getUsername();
     		base64=user.getProfilePicture();
     	}
-    	byte[] decodedByte = Base64.getDecoder().decode(base64.split(",")[1]);
-    	String[] base64Head = base64.split(",")[0].split("/");
-    	url += (base64Head.length>0) ? base64Head[1] : "";
+    	System.out.println(base64);
+    	String[] base64Array = base64.split(",");
+    	byte[] decodedByte = Base64.getDecoder().decode(base64Array[1]);
+    	String[] base64Head = base64Array[0].split("/");
+    	url += (base64Head.length>0) ? "." + base64Head[1].split(";")[0] : "";
     	// create meta-data for your folder and set content-length to 0
     	ObjectMetadata metadata = new ObjectMetadata();
     	metadata.setContentLength(decodedByte.length);
