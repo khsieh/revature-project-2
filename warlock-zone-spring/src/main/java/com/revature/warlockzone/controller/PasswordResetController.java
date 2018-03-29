@@ -32,11 +32,11 @@ public class PasswordResetController {
 	PasswordTokenDAO passTokenDao;
 	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    @GetMapping
-    public ResponseEntity displayResetPasswordPage(@RequestParam(required = false) String token) {
-        return new ResponseEntity(HttpStatus.ACCEPTED);
-    }
-
+    
+    // @RequestMapping(value = "/reset-password", method = RequestMethod.GET)
+    // public ResponseEntity displayResetPasswordPage(@RequestParam(required = false) String token) {
+    //     return new ResponseEntity(HttpStatus.ACCEPTED);
+    // }
 
 	@SuppressWarnings("rawtypes")
 	//    @PostMapping
