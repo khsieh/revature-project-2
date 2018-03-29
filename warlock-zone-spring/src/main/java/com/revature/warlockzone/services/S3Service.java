@@ -19,12 +19,14 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.amazonaws.util.IOUtils;
+import com.revature.warlockzone.beans.Post;
+import com.revature.warlockzone.beans.User;
 
 @Service
 public class S3Service {
 	//private static Logger log = Logger.getLogger(S3Service.class.getName());
 	private static final AWSCredentials cred = new BasicAWSCredentials("AKIAIKPWCF67BJA5HQYQ", "zhobcHjN76kafNKLE+eGI9ItDNcjQOZm75q/B+bH");
-	private static final AmazonS3 s3=AmazonS3Client.builder().withRegion("us-east-2")
+	private static final AmazonS3 s3 =AmazonS3Client.builder().withRegion("us-east-2")
 								            .withCredentials(new AWSStaticCredentialsProvider(cred))
 								            .build();
 	private static final String bucket = "warlock-zone";
@@ -44,18 +46,24 @@ public class S3Service {
     	S3Service.s3.putObject( new PutObjectRequest(S3Service.bucket,
     				type + "/", emptyContent, metadata));
     }
-    public static String uploadImage(String type, Integer id, String base64) {
+    public static String uploadImage(User user, Post post, String base64) {
+    	String url = "";
+    	if(post != null) {
+    		url = "post/" + (user.getUsername()+ post.getTimeStamp().toString()).hashCode();
+    	}else {
+    		url = "user/" + user.getUsername();
+    	}
     	byte[] decodedByte = Base64.getDecoder().decode(base64.split(",")[1]);
     	// create meta-data for your folder and set content-length to 0
     	ObjectMetadata metadata = new ObjectMetadata();
     	metadata.setContentLength(decodedByte.length);
-    	// create empty content
-    	InputStream emptyContent = new ByteArrayInputStream(decodedByte);
+    	// create image content
+    	InputStream imageContent = new ByteArrayInputStream(decodedByte);
     	// create a PutObjectRequest passing the folder name suffixed by /
     	// send request to S3 to create folder
     	S3Service.s3.putObject( new PutObjectRequest(S3Service.bucket,
-    				type + "/" + id.toString(), emptyContent, metadata));
-    	return "http://warlock-zone.s3.us-east-2.amazonaws.com/" + S3Service.bucket + "/" + type + "/" + id.toString();
+    				url, imageContent, metadata));
+    	return "http://" + S3Service.bucket + ".s3.us-east-2.amazonaws.com/"  +url;
     }
     
     /*
