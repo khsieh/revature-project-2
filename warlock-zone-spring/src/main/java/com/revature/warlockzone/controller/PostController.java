@@ -28,20 +28,17 @@ public class PostController {
 	private PostService postService;
 	@Autowired
 	private UserService userService;
-	public boolean tokenCheck(String token) {
-		List<User> users = userService.getAllUsers();
-		for(int i = 0; i < users.size(); i++) {
-			if(users.get(i).getToken().equals(token)) {
-				return true;
-			}
-		}
-		
+	public boolean tokenCheck(String token, Post post) {
+        User user = userService.getUser(post.getUser().getUserID());
+        if(token.equals(user.getToken())){
+            return true;
+        }
 		return false;
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/post")
 	public void addPost(@RequestBody Post post,  @RequestParam("token") String tokens) {
-		if(tokenCheck(tokens)) {
+		if(tokenCheck(tokens,post)) {
 			log.info("addPost: " + post.toString());
 			postService.addPost(post);
 		}
@@ -50,7 +47,7 @@ public class PostController {
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/post/RecentPosts")
 	public List<Post> addAndRetrieve(@RequestBody Post post, @RequestParam("token") String tokens) {
-		if(tokenCheck(tokens))
+		if(tokenCheck(tokens,post))
 		{
 			log.info("addAndRetrieve: " + post.toString());
 			postService.addPost(post);
@@ -62,7 +59,7 @@ public class PostController {
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/postByUser")
 	public List<Post> getUserPosts(@RequestBody User user,  @RequestParam("token") String tokens){
-		if(tokenCheck(tokens)) {
+		if(tokenCheck(tokens,post)) {
 			return postService.getPostsByUser(user);
 
 		}
@@ -71,7 +68,7 @@ public class PostController {
 	
 	@RequestMapping("/post")
 	public List<Post> getPosts( @RequestParam("token") String tokens){
-		if(tokenCheck(tokens)) {
+		if(tokenCheck(tokens,post)) {
 			log.info("getPosts");
 			return postService.getAllPosts();
 		}
@@ -82,7 +79,7 @@ public class PostController {
 	
 	@RequestMapping("/post/{id}")
 	public Post getPost(@PathVariable int id,  @RequestParam("token") String tokens){
-		if(tokenCheck(tokens)) {
+		if(tokenCheck(tokens,post)) {
 			log.info("getPost: "+ id);		
 			return postService.getPostById(id);
 		}
@@ -91,7 +88,7 @@ public class PostController {
 	
 	@RequestMapping("/RecentPosts")
 	public List<Post> getRecentPosts( @RequestParam("token") String tokens){
-		if(tokenCheck(tokens)) {
+		if(tokenCheck(tokens,post)) {
 			log.info("getRecentPosts");
 			return postService.getLastTenPosts();
 		}
@@ -100,7 +97,7 @@ public class PostController {
 	
 	@RequestMapping("/RecentPosts/{id}")
 	public List<Post> getRecentPosts(@PathVariable int id, @RequestParam("token") String tokens){
-		if(tokenCheck(tokens)) {
+		if(tokenCheck(tokens,post)) {
 			log.info("getRecentPosts: "+ id);
 			return postService.getNextTenPosts(id);
 		}
@@ -114,7 +111,7 @@ public class PostController {
 	
 	@RequestMapping(method = RequestMethod.PUT, value = "/post")
 	public void updatePost(@RequestBody Post post,  @RequestParam("token") String tokens) {
-		if(tokenCheck(tokens)) {
+		if(tokenCheck(tokens,post)) {
 			log.info("updatePost");
 			postService.updatePost(post);
 		}
@@ -123,7 +120,7 @@ public class PostController {
 	
 	@RequestMapping(method = RequestMethod.DELETE, value = "/post/{id}" )
 	public void deletePost(@PathVariable int id,  @RequestParam("token") String tokens) {
-		if(tokenCheck(tokens)) {
+		if(tokenCheck(tokens,post)) {
 			log.warn("deletePost: " + id);
 			postService.deletePost(id);
 		}
