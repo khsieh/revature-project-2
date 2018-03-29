@@ -18,11 +18,13 @@ import { PostComponent } from './components/post/post.component';
 import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AlertComponent } from './components/alert/alert.component';
+import { PwEmailComponent } from './components/pw-email/pw-email.component';
+import { PwResetComponent } from './components/pw-reset/pw-reset.component';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 //services
 import { LoginService } from './services/login/login.service';
-import { ErrorPageComponent } from './components/error-page/error-page.component';
-import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { PostsService } from './services/posts/posts.service';
 import { ToggleNewPostService } from './services/util/toggle-new-post.service';
 import { CurUserService } from './services/cache/curUser/cur-user.service';
@@ -33,8 +35,6 @@ import { RegisterService } from './services/register/register.service';
 import { UpdateUserService } from './services/update-user/update-user.service';
 import { ValidateService } from './services/validate/validate.service';
 import { AlertService } from './services/alert/alert.service';
-import { PwEmailComponent } from './components/pw-email/pw-email.component';
-import { PwResetComponent } from './components/pw-reset/pw-reset.component';
 import { ResetPwService } from './services/reset-pw/reset-pw.service';
 
 
