@@ -18,9 +18,7 @@ export class EditProfileComponent implements OnInit {
     new_password1: string;
     new_password2: string;
     cur_password: string;
-    //   reader = new FileReader;
-    new_img: any; //b64
-    // src = 'data:image/jpeg;base64';
+    new_img: any;
 
     constructor(
         public activeModal: NgbActiveModal,
@@ -75,7 +73,7 @@ export class EditProfileComponent implements OnInit {
         }   
         console.log("NEW PASSWORD WILL BE: " + this.editUser.$password)
         //set image to b64
-        this.editUser.image = this.new_img;
+        this.editUser.profilePicture = this.new_img;
         console.log(this.editUser);
         this.updateService.update(this.editUser).subscribe(
             resp => {
@@ -95,10 +93,9 @@ export class EditProfileComponent implements OnInit {
         let reader = new FileReader();
         if (event.target.files && event.target.files.length > 0) {
             let file = event.target.files[0];
-            // console.log(file);
             reader.readAsDataURL(file);
             reader.onloadend = () => {
-                file = reader.result;//.split(',')[1];
+                file = reader.result;
                 this.new_img = file;
             };
         }

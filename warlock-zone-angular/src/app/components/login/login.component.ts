@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
                     newUser.$firstName = respJSON["firstName"];
                     newUser.$lastName = respJSON["lastName"];
                     newUser.$email = respJSON["email"];
-                    newUser.$image = respJSON["image"];
+                    newUser.$profilePicture = respJSON["profilePicture"];
                     newUser.$username = respJSON["username"];
                     newUser.$password = respJSON["password"];
                     this.currentUser.setUser(newUser);

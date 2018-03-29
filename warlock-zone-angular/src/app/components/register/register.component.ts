@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
         this.newUser.$lastName = this.new_last_name;
         this.newUser.$email = this.new_email;
         this.newUser.$username = this.new_username;
-        this.newUser.$image = null;
+        this.newUser.$profilePicture = null;
         this.newUser.$password = this.new_password1;
         if(this.newUser.$password === this.new_password2){
             this.regService.submit(this.newUser).subscribe(

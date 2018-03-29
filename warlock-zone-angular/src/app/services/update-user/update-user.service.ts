@@ -22,7 +22,7 @@ export class UpdateUserService {
             "firstName":newUser.$firstName,
             "lastName":newUser.$lastName,
             "email":newUser.$email,
-            "image":newUser.$image
+            "profilePicture":newUser.$profilePicture
         }
         const header = {
             headers:new HttpHeaders({

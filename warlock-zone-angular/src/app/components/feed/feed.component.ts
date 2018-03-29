@@ -21,7 +21,7 @@ export class FeedComponent implements OnInit {
     unsubmittedContent: string;
     showUserInfo: boolean;
     searchedUser: any;
-
+    postImage:any
 
     constructor(
         private posts: PostsService,
@@ -201,5 +201,19 @@ export class FeedComponent implements OnInit {
         
       }
     }
+
+    onFileChange(event) {
+        let reader = new FileReader();
+        if (event.target.files && event.target.files.length > 0) {
+            let file = event.target.files[0];
+            reader.readAsDataURL(file);
+            reader.onloadend = () => {
+                file = reader.result;
+                this.postImage = file;
+            };
+        }
+
+    }
+
 }
 

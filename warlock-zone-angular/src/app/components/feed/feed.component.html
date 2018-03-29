@@ -41,7 +41,10 @@
                   <button class="btn" id="submitComment" type="button" (click)="createPost()" style="float:right">Submit</button>
                 </div>
                 <div class="panel-body" style="padding: 0px">  
-                    <textarea class="form-control" [(ngModel)]="unsubmittedContent" rows="5" ng-model="cmtName" style="padding: 0px; border: none" placeholder="Create your message"></textarea>       
+                    <textarea class="form-control" [(ngModel)]="unsubmittedContent" rows="5" ng-model="cmtName" style="padding: 0px; border: none" placeholder="Create your message"></textarea>
+                    <!-- upload picture for posts -->
+                    <label class="font-weight-bold" for="postImage">Upload Image</label>
+                    <input (change)="this.onFileChange($event)" name="postImage" type="file" accept="image/*">
                 </div>
               </div><!-- /panel panel-default -->
             </div><!-- /col-sm-5 -->

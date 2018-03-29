@@ -3,7 +3,7 @@ export class User {
 	userID:number;
     username:string;
     password:string;
-    image: string; //blob?? S3??
+    profilePicture: string; //blob?? S3??
 	firstName:string;
 	lastName:string;
     email:string;
@@ -35,7 +35,7 @@ export class User {
         this.$firstName = newU.$firstName;
         this.$lastName = newU.$lastName;
 		this.$email = newU.$email;
-		this.$image = newU.$image;
+		this.$profilePicture = newU.$profilePicture;
 
     }
 
@@ -66,12 +66,12 @@ export class User {
 		this.password = value;
 	}
 
-    public get $image(){
-        return this.image
+    public get $profilePicture(){
+        return this.profilePicture
     }
     
-    public set $image(value: string){
-        this.image = value;
+    public set $profilePicture(value: string){
+        this.profilePicture = value;
     }
 
     //firstname
