@@ -3,6 +3,7 @@ package com.revature.warlockzone;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
+import java.util.UUID;
 import java.sql.Timestamp;
 
 import org.apache.tomcat.jni.Time;
@@ -14,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.revature.warlockzone.beans.Post;
 import com.revature.warlockzone.beans.User;
+import com.revature.warlockzone.services.LoginService;
 import com.revature.warlockzone.services.PostService;
 import com.revature.warlockzone.services.S3Service;
 import com.revature.warlockzone.services.UserService;
@@ -21,6 +23,8 @@ import com.revature.warlockzone.services.UserService;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class WarlockZoneApplicationTests {
+	@Autowired
+	LoginService loginService;
 	@Autowired
 	public UserService userService;
 	
@@ -100,8 +104,8 @@ public class WarlockZoneApplicationTests {
     private void testDeleteUser(User testUser) {
     	int id = testUser.getUserID();
         userService.deleteUserById(id);
-        userService.getUser(id);
-        assertTrue(testUser == null);
+        User testUser2 = userService.getUser(id);
+        assertTrue(testUser2 == null);
     }
     
     private void compareUser(User testUser, User testUser2) {
@@ -158,6 +162,12 @@ public class WarlockZoneApplicationTests {
         S3Service.deleteImage("testPost", testPost.getPostId());
         testPost.setImage("");
         S3Service.deleteFolder("testPost");
+    }
+    public void testLoginUser(User testUser) {
+    	User testUser2 = loginService.authenticate(testUser.getUsername(), testUser.getPassword());
+	    compareUser(testUser, testUser2);
+	    testUser.setToken(UUID.randomUUID().toString());
+	    userService.updateToken(testUser);
     }
 }
 
