@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,6 +59,11 @@ public class PostController {
 	@RequestMapping("/RecentPosts/{id}")
 	public List<Post> getRecentPosts(@PathVariable int id){
 		return postService.getNextTenPosts(id);
+	}
+	
+	@GetMapping("/postCount")
+	public long getPostCount() {
+		return postService.getNumberOfPosts();
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT, value = "/post")

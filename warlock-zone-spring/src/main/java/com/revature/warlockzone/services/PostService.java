@@ -19,12 +19,15 @@ public class PostService {
 	
 	
 	public List<Post> getAllPosts(){
-		return securePosts(postDao.findAll());
+		return postDao.findAll();
+	}
+	
+	public long getNumberOfPosts() {
+		return postDao.count();
 	}
 	
 	public Post getPostById(int id) {
 		post = postDao.findBypostId(id);
-		post.getUser().setPassword("null");
 		return post;
 	}
 	
@@ -41,30 +44,15 @@ public class PostService {
 	}
 	
 	public List<Post> getLastTenPosts(){
-		return securePosts(postDao.findFirst10ByOrderByPostIdDesc());
+		return postDao.findFirst10ByOrderByPostIdDesc();
 	}
 	
 	public List<Post> getNextTenPosts(int id){
-		return securePosts(postDao.findFirst10ByPostIdLessThanOrderByPostIdDesc(id));
+		return postDao.findFirst10ByPostIdLessThanOrderByPostIdDesc(id);
 	}
 	
 	public List<Post> getPostsByUser(User user){
-		return securePosts(postDao.findAllByUser(user));	
+		return postDao.findAllByUser(user);	
 	}
 	
-	private List<Post> securePosts(List<Post> posts) {
-		
-		for(int i = 0; i < posts.size(); i++) {
-			posts.get(i).getUser().setPassword("null");
-		}
-		
-		return posts;
-	}
-	
-	private void secureLikes(List<User> users) {
-		
-		for(int i = 0; i < users.size(); i++) {
-			users.get(i).setPassword("null");
-		}
-	}
 }

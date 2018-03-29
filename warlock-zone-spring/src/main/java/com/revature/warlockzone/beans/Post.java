@@ -73,9 +73,6 @@ public class Post {
 		this.timeStamp = timeStamp;
 	}	
 	public List<User> getLikes() {
-		for(User user: likes) {
-			user.setPassword("null");
-		}
 		return likes;
 	}
 	public void setLikes(List<User> likes) {
