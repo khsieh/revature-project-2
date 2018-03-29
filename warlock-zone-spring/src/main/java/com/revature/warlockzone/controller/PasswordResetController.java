@@ -27,6 +27,7 @@ public class PasswordResetController {
 	UserService userService;
 	@Autowired
 	PasswordTokenDAO passTokenDao;
+	BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
   
 	@SuppressWarnings("rawtypes")
@@ -48,7 +49,9 @@ public class PasswordResetController {
         } else {
         	User user = token.getUser();
             //String updatedPassword = password;
-            user.setPassword(password);
+            String hashedPassword = passwordEncoder.encode(password);
+
+    	    user.setPassword(hashedPassword);
             userService.updatePassword(user);
             passTokenDao.delete(token);
             return new ResponseEntity(HttpStatus.ACCEPTED);
