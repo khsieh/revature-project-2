@@ -68,16 +68,6 @@ public User authenticate(String username, String password) {
 		userDao.save(user);
 	}
 	
-<<<<<<< HEAD
-	
-	private List<User> secureUsers(List<User> users) {
-		
-		for(int i = 0; i < users.size(); i++) {
-			users.get(i).setPassword("null");
-		}
-		
-		return users;
-	}
 	public void updateToken(User user) {
 		userDao.save(user);
 	}
@@ -86,6 +76,4 @@ public User authenticate(String username, String password) {
 	}
 	
 	
-=======
->>>>>>> Seth-Spring
 }
