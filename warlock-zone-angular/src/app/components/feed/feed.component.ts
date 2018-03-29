@@ -52,7 +52,6 @@ export class FeedComponent implements OnInit {
 
     getCurrentUser() {
         this.curUser.getUser().subscribe(resp => { this.currentUser = resp }, err => { console.log("Error: Cur-User Service failed to send back a User object") });
-        // console.log("Current User: "+JSON.stringify(this.currentUser));
     }
 
     //hide/unhide hidden comment section
@@ -64,6 +63,7 @@ export class FeedComponent implements OnInit {
 
         let newPost = new Post();
         newPost.$user = this.currentUser; //gets currentUser from CurUserService
+        console.log("in Create Post: " + JSON.stringify(newPost.$user));
         newPost.$message = this.unsubmittedContent;
         newPost.$likes = [];
         newPost.$image = null; //get postID from DB
@@ -124,8 +124,6 @@ export class FeedComponent implements OnInit {
 
                     this.postList.push(newPost);
                 }
-                // console.log("Response: "+JSON.stringify(list[0]));
-                // console.log("userID: "+list[0].user.userID);
             },
             err => {
                 console.error;

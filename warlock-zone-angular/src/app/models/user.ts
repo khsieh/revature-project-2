@@ -99,8 +99,6 @@ export class User {
 
 	public set $email(value: string) {
 		this.email = value;
-	}
- 
-	
-
+    }
+    
 }

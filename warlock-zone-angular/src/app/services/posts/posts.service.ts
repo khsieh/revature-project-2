@@ -8,7 +8,7 @@ import { AuthTokenService } from '../cache/authToken/auth-token.service';
 @Injectable()
 export class PostsService implements OnInit {
 
-    private url:string = "http://ec2-13-58-228-189.us-east-2.compute.amazonaws.com/";
+    private url: string = "http://ec2-13-58-228-189.us-east-2.compute.amazonaws.com/";
 
     constructor(
         private httpClient: HttpClient,
@@ -19,16 +19,13 @@ export class PostsService implements OnInit {
     }
 
     getPosts() {
-        let tUrl:string = this.url + "RecentPosts";
+        let tUrl: string = this.url + "RecentPosts";
         tUrl = this.authService.appendToken(tUrl);
-
-        let resp = this.httpClient.post(tUrl, {}, { responseType: 'text', observe: 'response' });
-        console.log("getPosts() resp: " + JSON.stringify(resp));
-        return resp;
+        return this.httpClient.post(tUrl, {}, { responseType: 'text', observe: 'response' });
     }
 
     addPost(post: Post) {
-        let tUrl:string = this.url + "post";
+        let tUrl: string = this.url + "post";
         tUrl = this.authService.appendToken(tUrl);
 
         const requestBody = {
@@ -46,8 +43,7 @@ export class PostsService implements OnInit {
             })
         }
         console.log(JSON.parse(JSON.stringify(post)));
-        let resp = this.httpClient.post(tUrl, JSON.parse(JSON.stringify(post)), header);
-        return resp;
+        return this.httpClient.post(tUrl, JSON.parse(JSON.stringify(post)), header);
     }
 
     likedPost(post) {
