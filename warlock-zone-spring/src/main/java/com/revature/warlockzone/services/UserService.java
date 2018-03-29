@@ -61,7 +61,7 @@ public User authenticate(String username, String password) {
 		String image = user.getProfilePicture();
 		if(image!=null && !image.isEmpty()) {
 			if(image.length() > S3Service.baseUrl.length()) {
-				if(!image.substring(S3Service.baseUrl.length()).equals(S3Service.baseUrl)){
+				if(!image.substring(0, S3Service.baseUrl.length()).equals(S3Service.baseUrl)){
 					user.setProfilePicture(S3Service.uploadImage(user, null));
 				}
 			}

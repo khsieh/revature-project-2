@@ -40,7 +40,7 @@ public class PostService {
 		String image = post.getImage();
 		if(image!=null && !image.isEmpty()) {
 			if(image.length() > S3Service.baseUrl.length()) {
-				if(!image.substring(S3Service.baseUrl.length()).equals(S3Service.baseUrl)){
+				if(!image.substring(0, S3Service.baseUrl.length()).equals(S3Service.baseUrl)){
 					User user = userService.getUser(post.getUser().getUserID());
 					post.setImage(S3Service.uploadImage(user, post));
 				}
