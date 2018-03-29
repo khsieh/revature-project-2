@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/toPromise';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Post } from '../../models/post';
 import { AuthTokenService } from '../cache/authToken/auth-token.service';
@@ -59,4 +59,36 @@ export class PostsService implements OnInit {
         return this.httpClient.put(tUrl, JSON.parse(JSON.stringify(post)), header);
     }
 
+    getUser(username: string){
+
+      let tUrl:string = this.url + "user/" + username;
+      
+      const header = {
+        headers: new HttpHeaders({
+            ContentType: 'application/json',
+            responseType: 'text',
+            observe: 'response'
+        })
+      }
+
+      return this.httpClient.get(tUrl);
+
+    }
+
+    getPostsFromUser(user){
+      
+      const header = {
+        headers: new HttpHeaders({
+            ContentType: 'application/json',
+            responseType: 'text',
+            observe: 'response'
+        })
+      }
+
+      let tUrl:string = this.url + 'postByUser';
+      tUrl = this.authService.appendToken(tUrl);
+
+      return this.httpClient.post(tUrl,user,header)
+      
+    }
 }
