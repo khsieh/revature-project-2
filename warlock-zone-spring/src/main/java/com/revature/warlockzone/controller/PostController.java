@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -104,6 +105,11 @@ public class PostController {
 			return postService.getNextTenPosts(id);
 		}
 		return null;
+	}
+	
+	@GetMapping("/postCount")
+	public long getPostCount() {
+		return postService.getNumberOfPosts();
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT, value = "/post")
