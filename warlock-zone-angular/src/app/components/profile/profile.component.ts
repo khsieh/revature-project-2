@@ -29,6 +29,7 @@ export class ProfileComponent implements OnInit {
         this.curUserService.getUser().subscribe(
             resp=>{
                 this.currentUser.setAll(resp);
+                // this.currentUser.$image = "https://cdn.discordapp.com/attachments/419134919927922688/424223986424086530/thanks_kevin.png";
             },
             err=>{
                 console.log(err);

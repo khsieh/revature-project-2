@@ -15,8 +15,9 @@ export class ValidateService {
     ) { }
 
     check(pw:string){
-
-        let tUrl = this.authService.appendToken(this.url);
+        // console.log("checking current password");
+        // console.log("pw in check: "  + pw)
+        // let tUrl = this.authService.appendToken(this.url);
         const requestBody = {
             "username":this.curUser.getStaticUser().$username,
             "password":pw
@@ -24,18 +25,12 @@ export class ValidateService {
         const header = {
             headers: new HttpHeaders({
                 ContentType: 'application/json',
-                responseType: 'text'
+                responseType: 'text',
+                observe:'response'
             })
         }
-        // return true;
-        this.httpClient.post(this.url,requestBody,header).subscribe(
-            resp=>{
-                return true;
-            },
-            err=>{
-                return false;
-            }
-        );
+        return this.httpClient.post(this.url,requestBody,header)
+
     }
 
 }

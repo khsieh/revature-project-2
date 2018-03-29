@@ -18,7 +18,7 @@ export class RegisterService {
             "firstName":newUser.$firstName,
             "lastName":newUser.$lastName,
             "email":newUser.$email,
-            "profilePicture":newUser.$profilePicture
+            "image":newUser.$image
         }
         const header = {
             headers:new HttpHeaders({

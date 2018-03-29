@@ -19,7 +19,7 @@ export class EditProfileComponent implements OnInit {
     new_password2: string;
     cur_password: string;
     //   reader = new FileReader;
-    new_img:any; //b64
+    new_img: any; //b64
     // src = 'data:image/jpeg;base64';
 
     constructor(
@@ -43,20 +43,25 @@ export class EditProfileComponent implements OnInit {
     }
 
     validateUser() {
-        if (this.validateService.check(this.cur_password)) {
-            if (this.new_password1 === this.new_password2) {
-                this.updateUser();
-                this.activeModal.close('Close');
+        console.log(this.cur_password)
+        this.validateService.check(this.cur_password).subscribe(
+            resp => {
+                console.log("validating user");
+                if (this.new_password1 === this.new_password2) {
+                    console.log("new pw matched!");
+                    this.updateUser();
+                    this.activeModal.close('Close');
+                }
+                else {
+                    this.alertService.error("new pw mismatched!");
+                    // alert('new pw doesn\'t matched');
+                }
+            },
+            err => {
+                this.alertService.error("wrong pw!");
+                //   alert('wrong password!');
             }
-            else {
-                this.alertService.error("new pw mismatched!");
-                // alert('new pw doesn\'t matched');
-            }
-        }
-        else {
-            this.alertService.error("wrong pw!");
-            //   alert('wrong password!');
-        }
+        )
     }
 
     updateUser(): void {
@@ -64,7 +69,8 @@ export class EditProfileComponent implements OnInit {
 
         this.editUser.$password = this.new_password1;
         //set image to b64
-        this.editUser.$profilePicture = this.new_img;
+        this.editUser.image = this.new_img;
+        console.log(this.editUser);
         this.updateService.update(this.editUser).subscribe(
             resp => {
                 console.log("update user successfully!");
@@ -85,12 +91,12 @@ export class EditProfileComponent implements OnInit {
             let file = event.target.files[0];
             // console.log(file);
             reader.readAsDataURL(file);
-            reader.onloadend = () =>{
+            reader.onloadend = () => {
                 file = reader.result;//.split(',')[1];
                 this.new_img = file;
             };
         }
-        
+
     }
 
 }
