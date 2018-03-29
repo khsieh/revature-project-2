@@ -4,7 +4,7 @@
     </canvas>
     
     <div class="avatar">
-        <div *ngIf="currentUser.$image==null; else showimage">
+        <div *ngIf="currentUser.$profilePicture==null; else showimage">
             <img src="http://via.placeholder.com/350x150" />
         </div>
         <ng-template #showimage>
