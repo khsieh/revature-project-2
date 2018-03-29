@@ -120,6 +120,7 @@ export class FeedComponent implements OnInit {
                     newPost.$user = list[index].user;
                     newPost.$message = list[index].message;
                     newPost.$postID = list[index].postId;
+                    // console.log("postId: "+newPost.$postID);
                     newPost.$likes = list[index].likes;
                     // newPost.$likes = list[index].likes.length;
                     newPost.initPos();
@@ -183,9 +184,24 @@ export class FeedComponent implements OnInit {
       }
 
     }
-
-    // getRandomNumberForCSS(): number{
-    //   return Math.floor(Math.random() * 60)+20;
-    // }
+    //id is postId, position is whic direction to move, -1 (left), +1 (right), 0 (most recent)
+    getPostsByID(position: number){
+      let id;
+      try{ 
+        id = this.postList.pop().$postID; //pops off last post
+      } catch(err) {
+        if(err == TypeError){
+          this.getPostsFromService();
+        } else{
+          console.log(err);
+        }
+      }
+      if(position > 0 && id != undefined && id != null){
+        this.populatePostList(this.posts.getPostsByID(id));
+      } else {
+        this.getPostsFromService();
+        
+      }
+    }
 }
 
