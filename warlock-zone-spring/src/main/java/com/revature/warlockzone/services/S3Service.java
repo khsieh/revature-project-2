@@ -47,6 +47,9 @@ public class S3Service {
     	S3Service.s3.putObject( new PutObjectRequest(S3Service.bucket,
     				type + "/", emptyContent, metadata));
     }
+    public static String uploadImage(User user) {
+    	return uploadImage(user, null);
+    }
     public static String uploadImage(User user, Post post) {
     	String url = "";
     	String base64="";
