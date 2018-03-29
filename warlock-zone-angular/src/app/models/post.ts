@@ -8,7 +8,7 @@ export class Post {
 	likes:string[];
 	// likedBy: number[]; //set of userIDs that have liked the post.
     image: Blob; //blob? s3?
-
+	position: number[];
     constructor( ) {}
     
     /*
@@ -28,7 +28,7 @@ export class Post {
     */
 
 	// ngOnInit(){
-
+		
 	// }
 
     //postID
@@ -85,10 +85,20 @@ export class Post {
 		this.image = value;
 	}
 	
-	// //?? not sure if this is how we are doing it
-	// public addUserIDtoLikedBy(userID){
-	// 	this.likes.push(userID);
-	// }
+	public initPos(){
+		this.position = [];
+		this.position.push(Math.floor(Math.random() * 100));
+		this.position.push(Math.floor(Math.random() * 100));
+	}
+
+	//image
+	public get $pos(): number[] {
+		return this.position;
+	}
+
+	public set $pos(value: number[]) {
+		this.position = value;
+	}
 
 	public getJSON() {
 		// let postJson = {'message':null, 'likes':null, 'image':null, 'user': null};
