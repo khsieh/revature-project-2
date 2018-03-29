@@ -1,9 +1,12 @@
 package com.revature.warlockzone.services;
 import java.io.ByteArrayInputStream;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Base64;
 import java.util.List;
+
+import org.springframework.stereotype.Service;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
@@ -16,6 +19,8 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.amazonaws.util.IOUtils;
+
+@Service
 public class S3Service {
 	//private static Logger log = Logger.getLogger(S3Service.class.getName());
 	private static final AWSCredentials cred = new BasicAWSCredentials("AKIAIKPWCF67BJA5HQYQ", "zhobcHjN76kafNKLE+eGI9ItDNcjQOZm75q/B+bH");
@@ -37,7 +42,7 @@ public class S3Service {
     	// create a PutObjectRequest passing the folder name suffixed by /
     	// send request to S3 to create folder
     	S3Service.s3.putObject( new PutObjectRequest(S3Service.bucket,
-    				type + "/" + id.toString() + "/", emptyContent, metadata));
+    				type + "/", emptyContent, metadata));
     }
     public static String uploadImage(String type, Integer id, String base64) {
     	byte[] decodedByte = Base64.getDecoder().decode(base64.split(",")[1]);
@@ -50,7 +55,7 @@ public class S3Service {
     	// send request to S3 to create folder
     	S3Service.s3.putObject( new PutObjectRequest(S3Service.bucket,
     				type + "/" + id.toString(), emptyContent, metadata));
-    	return "https://s3.amazonaws.com/" + S3Service.bucket + "/" + type + "/" + id.toString();
+    	return "http://warlock-zone.s3.us-east-2.amazonaws.com/" + S3Service.bucket + "/" + type + "/" + id.toString();
     }
     
     /*

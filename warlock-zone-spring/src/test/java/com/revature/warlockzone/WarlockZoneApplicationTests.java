@@ -1,16 +1,90 @@
-//package com.revature.warlockzone;
-//
-//import org.junit.Test;
-//import org.junit.runner.RunWith;
-//import org.springframework.boot.test.context.SpringBootTest;
-//import org.springframework.test.context.junit4.SpringRunner;
-//
-//@RunWith(SpringRunner.class)
-//@SpringBootTest
-//public class WarlockZoneApplicationTests {
-//
-//	@Test
-//	public void contextLoads() {
-//	}
-//
-//}
+package com.revature.warlockzone;
+
+import org.apache.tomcat.jni.Time;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import com.revature.warlockzone.beans.Post;
+import com.revature.warlockzone.beans.User;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class WarlockZoneApplicationTests {
+	@Autowired
+	public UserServiceTests userTest;
+	
+	@Autowired
+	public PostServiceTests postTest;
+	
+	@Autowired
+	S3ServiceTests s3Test;
+	@Test
+	public void main() {
+		try {
+			//UserServiceTests userTest = new UserServiceTests();
+			//PostServiceTests postTest = new PostServiceTests();
+			//S3ServiceTests s3Test = new S3ServiceTests();
+			
+			User testUser= new User();
+			testUser.setUsername("testUserWarlock");
+			testUser.setFirstName("Test");
+			testUser.setLastName("Warlock");
+			testUser.setProfilePicture("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVoAAAERAQMAAAAAAP2aAAAABlBMVEX///8AAABVwtN+AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAFVklEQVR4Ae1ZQa4kNQxNT48YFkgfIRYsRhDEBXo5CyRylD7CLNlNjtZH+UeAHQtEk2c7jp1KJd2CvytrqmI/PzuOk6r/f00IhxwdODpwdODowNGBowNHB44OHB0I5/v9/s+jffi1EE+vj7HPN/A+PkZG4hBKyPdrPicO4VP4bk3mxCF8yL8syTVxCJ9/ziv2N0p4SUvyRckhpaaPtVuDc2z6UDs39BS+bcZQe9/QU/i6GUPth4aegolssNGuRv/jK2OM1GzAF7MAA6vq3X8qPlTalsD9koekCpotAZQrPhzTEB2DpzzGh+iqVy5otWWOvDoMjhydtTDSwu/c2Vlz4zR3e+87b86t1fl10UebTTuONptmtLfEl/vfFh/pepo/ZPxgm4uSPxVe/Zm1F1L35HQrjHPeozFeyT+S+fucXJ+TK9EWLychy/tu8dqTh6qm5An2ipF3V30Q568y8V4kmf8h0M8QGbgJXpsjZjdEsnVr5itMRK7rC+FK9s4tEd5+xE5XmIkc6Y7bdIWZaInuuM1WKCvLStalKtIUTmQZLa6xRGOynTttOArwOapHD3BU30ZhWj0ZcE96xzRLmPSOydHMaOs3MFTOmQxqO2NgqEzOFnWGdfDafbLkCNaIMLjM3+4ZxqR3EW7qX3kd8YvAtgbeJhEqkT/il2dYtumwmySo5L4WBdfkN8YENyam54meAbv38DZJUEGmB4tu+7uSQY7lolKohw+QL4gKt3L5rgOtkqGkct3KFQKFZFIHN3KUm6SjYggbcJlTvFIodSINiICIjJv0i2ISPAMhMhiybWTHARGQktFqSC5XLNdIaFqUEMWby1gDBdJByUkgjFKSIG1QchYslnGPTE0oTqodfJQgnYHpZENG1hWZykEaENUAYKRmVv+MTGspderMiNJIkxXqkKyr3SFTEHwgPkwOeUGOdoefIqcQkH0kVGts54gfsTyiSjccuRjTzMlmfoqMk1SiR0I1F1/5J/J2ZMyV6jR+rGVkhYFEtZzyH8k4rA9nfpqM9g1kWzMek4NcW/VANyqV3zCL1r0ROba80zJwbPwhmyzwjcmuU5My4PIn8ikyVuGmQjqWbeYJmV7y9LjU8KfIiNwpY5v5/yKHXGZFmSooIarllVzMp8jUv5pjldmRY4nCNZJUQGpJdcaipGp0I/CnyNSSmgTRuEYSASbcRFIZs+j9EAEk3ERyGXGNJAKkG5QiWS7ovUQA5uBgsW7B8Fch3lNkc6DflSy7mYn3FPl9LWr+ex2fOMwtgjhjVphHSmqKREW7ZHZkzYDGmKoUJ4XJScFYtF0yVwAKSyqDaY6gdchQdFfoz7EFWd1UlYbWhDomaFolKQuyNoumiIgfSgSqjaakBAHeSCQkC05WEmM7cIFXcdwwJtyGwo2QDzhnouQhESCT6Y9X+XqjC9jGcNeEQDUtyfJX6RXJtI/bzOK6wMPfstZk+l7Clet2bjNLheWzAv5XDjIhh0wMECmg9ofR/p4YKF8gyncIiB5BNt09ivXl/soa76mg3bDxxY5gzc2syXo7fbP43BGs2e/BZLfNwZcMfbBN3J4SQTdlOXZ21rTNmwdj00qXKzordKZ3ttcR46lze7Pbley9neWXP21z/xhN29zvip+nK6KY2ULdCqyL9KtF5m0OQV5HHOIibRbR5XVEFr8NBqQK2W7ZwOr3462Zq/XJtzQOuLS4Hc18vr3tUBrcds2W3/xOay1Yr8983HctdwmboZxrw3a1OnurZ5daDt4rO/n/diZEcglLYhZsTv2yYFU3pf5crcWI1PxFeUEk90/3+1+P8A7O0YGjA3sd+BdDd3c97E/QawAAAABJRU5ErkJggg==");
+			testUser.setEmail("testUser@warlock-zone.com");
+			
+	
+			Post testPost = new Post();
+			testPost.setUser(testUser);
+			testPost.setMessage("automagically");
+			testPost.setImage("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAVoAAAERAQMAAAAAAP2aAAAABlBMVEX///8AAABVwtN+AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAFVklEQVR4Ae1ZQa4kNQxNT48YFkgfIRYsRhDEBXo5CyRylD7CLNlNjtZH+UeAHQtEk2c7jp1KJd2CvytrqmI/PzuOk6r/f00IhxwdODpwdODowNGBowNHB44OHB0I5/v9/s+jffi1EE+vj7HPN/A+PkZG4hBKyPdrPicO4VP4bk3mxCF8yL8syTVxCJ9/ziv2N0p4SUvyRckhpaaPtVuDc2z6UDs39BS+bcZQe9/QU/i6GUPth4aegolssNGuRv/jK2OM1GzAF7MAA6vq3X8qPlTalsD9koekCpotAZQrPhzTEB2DpzzGh+iqVy5otWWOvDoMjhydtTDSwu/c2Vlz4zR3e+87b86t1fl10UebTTuONptmtLfEl/vfFh/pepo/ZPxgm4uSPxVe/Zm1F1L35HQrjHPeozFeyT+S+fucXJ+TK9EWLychy/tu8dqTh6qm5An2ipF3V30Q568y8V4kmf8h0M8QGbgJXpsjZjdEsnVr5itMRK7rC+FK9s4tEd5+xE5XmIkc6Y7bdIWZaInuuM1WKCvLStalKtIUTmQZLa6xRGOynTttOArwOapHD3BU30ZhWj0ZcE96xzRLmPSOydHMaOs3MFTOmQxqO2NgqEzOFnWGdfDafbLkCNaIMLjM3+4ZxqR3EW7qX3kd8YvAtgbeJhEqkT/il2dYtumwmySo5L4WBdfkN8YENyam54meAbv38DZJUEGmB4tu+7uSQY7lolKohw+QL4gKt3L5rgOtkqGkct3KFQKFZFIHN3KUm6SjYggbcJlTvFIodSINiICIjJv0i2ISPAMhMhiybWTHARGQktFqSC5XLNdIaFqUEMWby1gDBdJByUkgjFKSIG1QchYslnGPTE0oTqodfJQgnYHpZENG1hWZykEaENUAYKRmVv+MTGspderMiNJIkxXqkKyr3SFTEHwgPkwOeUGOdoefIqcQkH0kVGts54gfsTyiSjccuRjTzMlmfoqMk1SiR0I1F1/5J/J2ZMyV6jR+rGVkhYFEtZzyH8k4rA9nfpqM9g1kWzMek4NcW/VANyqV3zCL1r0ROba80zJwbPwhmyzwjcmuU5My4PIn8ikyVuGmQjqWbeYJmV7y9LjU8KfIiNwpY5v5/yKHXGZFmSooIarllVzMp8jUv5pjldmRY4nCNZJUQGpJdcaipGp0I/CnyNSSmgTRuEYSASbcRFIZs+j9EAEk3ERyGXGNJAKkG5QiWS7ovUQA5uBgsW7B8Fch3lNkc6DflSy7mYn3FPl9LWr+ex2fOMwtgjhjVphHSmqKREW7ZHZkzYDGmKoUJ4XJScFYtF0yVwAKSyqDaY6gdchQdFfoz7EFWd1UlYbWhDomaFolKQuyNoumiIgfSgSqjaakBAHeSCQkC05WEmM7cIFXcdwwJtyGwo2QDzhnouQhESCT6Y9X+XqjC9jGcNeEQDUtyfJX6RXJtI/bzOK6wMPfstZk+l7Clet2bjNLheWzAv5XDjIhh0wMECmg9ofR/p4YKF8gyncIiB5BNt09ivXl/soa76mg3bDxxY5gzc2syXo7fbP43BGs2e/BZLfNwZcMfbBN3J4SQTdlOXZ21rTNmwdj00qXKzordKZ3ttcR46lze7Pbley9neWXP21z/xhN29zvip+nK6KY2ULdCqyL9KtF5m0OQV5HHOIibRbR5XVEFr8NBqQK2W7ZwOr3462Zq/XJtzQOuLS4Hc18vr3tUBrcds2W3/xOay1Yr8983HctdwmboZxrw3a1OnurZ5daDt4rO/n/diZEcglLYhZsTv2yYFU3pf5crcWI1PxFeUEk90/3+1+P8A7O0YGjA3sd+BdDd3c97E/QawAAAABJRU5ErkJggg==");
+			System.out.println("Before uploading images\n");
+			System.out.println(testUser.toString());
+			System.out.println(testPost.toString());
+			
+			
+			s3Test.uploadImage(testUser, testPost);
+			
+			System.out.println("After uploading images\n");
+			
+			System.out.println(testUser.toString());
+			System.out.println(testPost.toString());
+			
+			System.out.println("Adding test user and post to DB");
+			try {
+				userTest.testAddUser(testUser);
+			}catch(NullPointerException e) {
+				e.printStackTrace();
+			}
+			postTest.testAddPost(testPost);
+			System.out.println(testUser.toString());
+			System.out.println(testPost.toString());
+			System.out.println("Added test user and post to DB");
+	
+			Time.sleep(120000);
+			
+			System.out.println("Updating test user and post");
+			userTest.testUpdateUser(testUser);
+			postTest.testUpdatePost(testPost);
+			System.out.println(testUser.toString());
+			System.out.println(testPost.toString());
+			System.out.println("Updated  test user and post");
+			
+			Time.sleep(60000);
+			
+			System.out.println("Deleting test user and post images");
+			s3Test.deleteImage(testUser, testPost);
+			
+			System.out.println("Deleting test post");
+			postTest.testDeletePost(testPost);
+			
+			System.out.println("Deleting test user");
+			userTest.testDeleteUser(testUser);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		}
+}
+

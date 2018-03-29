@@ -78,15 +78,13 @@ public class Post {
 		}
 		return likes;
 	}
-	@Override
-	public String toString() {
-		return "Post [postId=" + postId + ", message=" + message + ", timeStamp=" + timeStamp + ", likes=" + likes
-				+ ", user=" + user + "]";
-	}
-	
-	
 	public void setLikes(List<User> likes) {
 		this.likes = likes;
 	}
-
+	@Override
+	public String toString() {
+		return "Post [postId=" + postId + ", message=" + message + ", timeStamp=" + timeStamp + ", image=" + image
+				+ ", user=" + user + ", likes=" + likes + "]";
+	}
+	
 }

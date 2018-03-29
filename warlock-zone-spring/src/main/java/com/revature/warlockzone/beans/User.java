@@ -81,16 +81,17 @@ public class User {
 //	}
 //	public void setPosts(List<Post> posts) {
 //		this.posts = posts;
-//	}
-	@Override
-	public String toString() {
-		return "User [userID=" + userID + ", username=" + username + ", password=" + password + ", firstName="
-				+ firstName + ", lastName=" + lastName + ", email=" + email + "]";
-	}
-	
-	
+//	}	
 	public void setPosts(List<Post> posts) {
 		this.posts = posts;
 	}
+	@Override
+	public String toString() {
+		return "User [userID=" + userID + ", username=" + username + ", password=" + password + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", email=" + email + ", profilePicture=" + profilePicture
+				+ ", posts=" + posts + "]";
+	}
+	
+	
 	
 }
