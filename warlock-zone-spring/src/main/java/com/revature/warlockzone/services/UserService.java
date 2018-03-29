@@ -56,10 +56,18 @@ public class UserService {
     }
 
     public void updateUser(User user) {
-        String hashedPassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(hashedPassword);
-        userDao.save(user);
-    }
+		String hashedPassword = passwordEncoder.encode(user.getPassword());
+		user.setPassword(hashedPassword);
+		String image = user.getProfilePicture();
+		if(image!=null && !image.isEmpty()) {
+			if(image.length() > S3Service.baseUrl.length()) {
+				if(!image.substring(0, S3Service.baseUrl.length()).equals(S3Service.baseUrl)){
+					user.setProfilePicture(S3Service.uploadImage(user, null));
+				}
+			}
+		}
+		userDao.save(user);
+}
 
     public void deleteUserById(int id) {
         userDao.deleteById(id);
