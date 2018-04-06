@@ -1,0 +1,13 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "tesing ",
+    "version" : "1",
+    "title" : "person"
+  },
+  "host" : "virtserver.swaggerhub.com",
+  "basePath" : "/khsieh/test/1",
+  "schemes" : [ "https" ],
+  "paths" : { },
+  "definitions" : { }
+}
